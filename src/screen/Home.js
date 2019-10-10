@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native';
-import { Container, Input, Item, Button } from 'native-base';
+import { Input, Item } from 'native-base';
 import Slideshow from 'react-native-image-slider-show';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -94,7 +94,7 @@ export class Home extends Component {
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                             renderItem={({item}) =>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {url:item.image, title: item.title})}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details')}>
                                 <View style={styles.list}>
                                     <Image style={styles.imagelist} source={{uri : item.image}}/>
                                     <View style={styles.boxImg}>

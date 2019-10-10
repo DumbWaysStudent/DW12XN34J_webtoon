@@ -46,7 +46,7 @@ class DetailEp extends Component {
                     </Left>
                     <Body><Text style={styles.barTitle}>Episode 1</Text></Body>
                     <Right>
-                        <Icon name='share' />
+                        <Icon name='share' onPress={this.onClickShare} />
                     </Right>
                 </Header>
                 <SafeAreaView>
