@@ -21,7 +21,7 @@ class MyToon extends Component {
                 image: 'https://cdn.idntimes.com/content-images/community/2019/05/screenshot-20190509-145620-43ff1dab6072ada62ba43e14321a87ef.png',
                 episode: '42 Episode(s)'
                 }],
-            
+            active: false,  
         };
     }
 
