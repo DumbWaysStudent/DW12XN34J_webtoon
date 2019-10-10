@@ -37,7 +37,7 @@ class Profile extends Component {
                         
                     </View>
                     <View>
-                        <TouchableOpacity style={styles.logout}>
+                        <TouchableOpacity style={styles.logout} onPress={() => this.props.navigation.navigate('GuestNav')} >
                             <Text style={styles.txtLog}>Log Out</Text>
                         </TouchableOpacity>
                     </View>
