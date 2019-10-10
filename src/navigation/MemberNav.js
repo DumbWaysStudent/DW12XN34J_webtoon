@@ -7,6 +7,7 @@ import DetailEp from '../screen/DetailEp';
 import ProfilEdit from '../screen/ProfilEdit';
 import MyToon from '../screen/MyToon';
 import CreateMyToon from '../screen/CreateMyToon'
+import CreateEpisode from '../screen/CreateEpisode'
 
 
 const MemberNav = createStackNavigator({
@@ -45,10 +46,16 @@ const MemberNav = createStackNavigator({
         navigationOptions:{
             header: null,
         }
+    },
+    CreateEpisode:{
+        screen: CreateEpisode,
+        navigationOptions:{
+            header:null,
+        }
     }
 },
 {
-    initialRouteName: 'CreateMyToon'
+    initialRouteName: 'CreateEpisode'
 })
 
 export default createAppContainer(MemberNav);

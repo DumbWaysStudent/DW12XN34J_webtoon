@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity, TextInput } from 'react-native';
-import { Header, Left, Icon, Body, Right, Input } from 'native-base';
+import { Header, Left, Icon, Body, Right, Input, Button } from 'native-base';
 
 
 
@@ -8,24 +8,16 @@ class CreateMyToon extends Component {
     constructor(props){
     super(props);
     this.state ={
-        imgEps: [
+        addImg: [
             {
               id: 0,
-              title: 'Episode 1',
+              title: '1.Cover.png',
               url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
-              lastUpdate: '1 Oktober 2019'
             },
             {
               id:1,
-              title: 'Episode 2',
+              title: '2.Introduction.png',
               url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
-              lastUpdate: '2 Oktober 2019'
-            },
-            {
-              id:2,
-              title: 'Episode 3',
-              url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
-              lastUpdate: '3 Oktober 2019'
             },
           ]
     }
@@ -36,43 +28,51 @@ class CreateMyToon extends Component {
             <View style={styles.container}>
                 <Header style={styles.header}>
                     <Left>
-                        <Icon name='arrow-back' onPress={() => this.props.navigation.navigate('MyToon')} />
+                        <Icon name='arrow-back' onPress={() => this.props.navigation.navigate('CreateMyToon')} />
                     </Left>
                     <Body>
-                        <Text style={styles.txtBar}>Create Webtoon</Text>
+                        <Text style={styles.txtBar}>Create Episode</Text>
                     </Body>
                     <Right>
-                        <Icon name='checkmark' onPress={() => this.props.navigation.navigate('MyToon')} />
+                        <Icon name='checkmark' onPress={() => this.props.navigation.navigate('CreateMyToon')} />
                     </Right>
                 </Header>
 
                 <View style={styles.viewInput}>
-                    <Text style={styles.titleInput}>Title</Text>
+                    <Text style={styles.titleInput}>Name</Text>
                     <TextInput  placeholder='Search' style={styles.input} />
                 </View>
 
                 <View style={styles.flexEps}>
-                    <Text style={styles.eps}>Episode</Text>
+                    <Text style={styles.eps}>Add Images</Text>
                     
                         <FlatList 
-                        data={this.state.imgEps}
+                        data={this.state.addImg}
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
                         <View style={styles.containerEps} >
                             <Image source={{uri : item.url}} style={styles.imgList} />
                             <View style={styles.txtImg}>
                                 <Text style={styles.titleEps}>{item.title}</Text>
-                                <Text style={styles.update}>{item.lastUpdate}</Text>
-                            </View>
-                        </View>
-                        }
+                                <View>
+                                    <Button style={styles.buttonDel}>
+                                        <Text style={styles.del}>Delete</Text>
+                                    </Button>
+                                </View>
+                            </View>                           
+                        </View>                        
+                        }                        
                         />
+                        
                     
                 </View>
                 <View>
-                    <TouchableOpacity style={styles.btnAdd} onPress={() => this.props.navigation.navigate('CreateEpisode')} >
-                        <Text style={styles.txtAdd}>+ Add Episode</Text>
+                    <TouchableOpacity style={styles.btnAdd} >
+                        <Text style={styles.txtAdd}>+ Image</Text>
                     </TouchableOpacity>
+                </View>
+                <View>
+                    <TextInput style={styles.test} /> 
                 </View>
             </View>
         );
@@ -80,17 +80,36 @@ class CreateMyToon extends Component {
 }
 
 const styles = StyleSheet.create({
+    input:{
+        borderColor:'black',
+        borderWidth:2,
+        fontSize:18
+    },
+    viewInput:{
+        width:'70%',
+        alignSelf:'center'
+    },
+    titleInput:{
+        fontSize:20,
+        fontWeight:'bold'
+    },
     container:{
         flex:1
-    },
-    header:{
-        backgroundColor: '#4287f5'
     },
     containerEps:{
         flexDirection:'row',
         marginLeft:60,
         marginBottom:20
               
+    },
+    containerSearch:{
+        borderColor:'black',
+        borderWidth:2,
+        marginHorizontal:20,
+        marginVertical:5
+    },
+    header:{
+        backgroundColor:'#4287f5'
     },
     txtBar:{
         fontSize:20
@@ -103,7 +122,8 @@ const styles = StyleSheet.create({
         borderWidth:2,
         padding:20,
         width:'70%',
-        alignSelf:'center'
+        alignSelf:'center',
+        fontSize:40
     },
     titleSearch:{
         fontSize:20,
@@ -121,9 +141,11 @@ const styles = StyleSheet.create({
         height:100,
         borderColor:'black',
         borderWidth:2,
+        
     },
     txtImg:{
-        marginLeft:10
+        marginLeft:10,
+        flexDirection:'column'
     },
     titleEps:{
         fontWeight:'bold',
@@ -142,22 +164,19 @@ const styles = StyleSheet.create({
     btnAdd:{
         borderColor:'black',
         borderWidth:2,
-        padding:20,
+        padding:10,
         width:'70%',
         alignSelf:'center'
     },
-    input:{
+    buttonDel:{
         borderColor:'black',
-        borderWidth:2,
-        fontSize:18
+        backgroundColor:'#1c313a',
+        width:70,
     },
-    viewInput:{
-        width:'70%',
-        alignSelf:'center'
-    },
-    titleInput:{
-        fontSize:20,
-        fontWeight:'bold'
-    },
+    del:{
+        fontSize:16,
+        fontWeight:'bold',
+        paddingLeft:10
+    }
 })
 export default CreateMyToon;
