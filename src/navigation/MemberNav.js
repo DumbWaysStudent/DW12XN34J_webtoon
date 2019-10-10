@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 // import BottomTabNavigator from './BottomTabNavigator';
 import Details from '../screen/Details';
 import DetailEp from '../screen/DetailEp';
+import ProfilEdit from '../screen/ProfilEdit';
 
 
 const MemberNav = createStackNavigator({
@@ -24,10 +25,16 @@ const MemberNav = createStackNavigator({
         navigationOptions:{
             header: null
         }
+    },
+    ProfilEdit:{
+        screen: ProfilEdit,
+        navigationOptions:{
+            header:null
+        }
     }
 },
 {
-    initialRouteName: 'DetailEp'
+    initialRouteName: 'ProfilEdit'
 })
 
 export default createAppContainer(MemberNav);
