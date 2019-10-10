@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Details from '../screen/Details';
 import DetailEp from '../screen/DetailEp';
 import ProfilEdit from '../screen/ProfilEdit';
+import MyToon from '../screen/MyToon';
 
 
 const MemberNav = createStackNavigator({
@@ -31,10 +32,16 @@ const MemberNav = createStackNavigator({
         navigationOptions:{
             header:null
         }
+    },
+    MyToon:{
+        screen: MyToon,
+        navigationOptions:{
+            header: null
+        }
     }
 },
 {
-    initialRouteName: 'ProfilEdit'
+    initialRouteName: 'MyToon'
 })
 
 export default createAppContainer(MemberNav);
