@@ -13,7 +13,7 @@ const BottomTabNavigator = createMaterialBottomTabNavigator({
         screen: Home,
         navigationOptions: {
             tabBarLabel: 'For You',
-            tabBarIcon : ({ red }) => (
+            tabBarIcon : () => (
                 <Icon name='home' size={20} color={'#ffff'} />
             )
         }
@@ -22,7 +22,7 @@ const BottomTabNavigator = createMaterialBottomTabNavigator({
         screen: Favorit,
         navigationOptions: {
             tabBarLabel: 'Favorit',
-            tabBarIcon: ({ red}) => (
+            tabBarIcon: () => (
                 <Icon name='star' size={20} color={'#ffff'} />
             )
         }
@@ -31,16 +31,17 @@ const BottomTabNavigator = createMaterialBottomTabNavigator({
         screen: Profile,
         navigationOptions: {
             tabBarLabel: 'Profile',
-            tabBarIcon: ({ tintColor}) => (
+            tabBarIcon: () => (
                 <Icon name="user" size={20} color={'#ffff'} />
             )
         }
     },
 },
+
 {    
+    initialRouteName: 'Home',
     activeColor: '#fff',  
-    inactiveColor: '#000', 
-     
+    inactiveColor: '#000',  
     barStyle: { backgroundColor: '#4287f5' },  
   }, 
 )

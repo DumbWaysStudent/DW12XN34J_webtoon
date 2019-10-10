@@ -10,6 +10,9 @@ const GuestNav = createStackNavigator({
             header : null
         }
     }
+},
+{
+    initialRouteName: 'Login'
 })
 
 export default createAppContainer(GuestNav);

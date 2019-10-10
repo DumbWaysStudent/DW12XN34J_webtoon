@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import Navigator from './src/Navigator';
+import SwitchNav from './src/navigation/SwitchNav';
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
-      <Navigator />
+      <SwitchNav />
     );
   }
 }
+
+export default App;
