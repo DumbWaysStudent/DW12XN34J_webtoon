@@ -6,6 +6,7 @@ import Details from '../screen/Details';
 import DetailEp from '../screen/DetailEp';
 import ProfilEdit from '../screen/ProfilEdit';
 import MyToon from '../screen/MyToon';
+import CreateMyToon from '../screen/CreateMyToon'
 
 
 const MemberNav = createStackNavigator({
@@ -38,10 +39,16 @@ const MemberNav = createStackNavigator({
         navigationOptions:{
             header: null
         }
+    },
+    CreateMyToon:{
+        screen : CreateMyToon,
+        navigationOptions:{
+            header: null,
+        }
     }
 },
 {
-    initialRouteName: 'MyToon'
+    initialRouteName: 'CreateMyToon'
 })
 
 export default createAppContainer(MemberNav);
