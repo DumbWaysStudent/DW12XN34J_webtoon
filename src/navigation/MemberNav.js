@@ -27,7 +27,7 @@ const MemberNav = createStackNavigator({
     }
 },
 {
-    initialRouteName: 'Details'
+    initialRouteName: 'DetailEp'
 })
 
 export default createAppContainer(MemberNav);
