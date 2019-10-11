@@ -221,7 +221,8 @@ const styles = StyleSheet.create({
         marginLeft:10,
         paddingLeft:10,
         marginRight:20,
-        marginTop:5,   
+        marginTop:5,  
+        width:80 
     },
     txtBtnFav:{
         fontWeight:'bold',
