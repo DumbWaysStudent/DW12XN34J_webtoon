@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity, TextInput } from 'react-native';
 import { Header, Left, Icon, Body, Right, Input } from 'native-base';
 
 
@@ -46,12 +46,12 @@ class CreateMyToon extends Component {
                     </Right>
                 </Header>
 
-                <View style={styles.containerSearch}>
-                    <Text style={styles.titleSearch}>Title</Text>
-                    <Input style={styles.search} placeholder='Search' />
+                <View style={styles.viewInput}>
+                    <Text style={styles.titleInput}>Title</Text>
+                    <TextInput  placeholder='Search' style={styles.input} />
                 </View>
 
-                <View style={styles.flexEps}>
+                <View>
                     <Text style={styles.eps}>Episode</Text>
                     
                         <FlatList 
@@ -89,23 +89,21 @@ const styles = StyleSheet.create({
         marginBottom:20
               
     },
-    txtBar:{
-        fontSize:20
-    },
-    row:{
-        flexDirection:'row'
-    },
-    search:{
+    input:{
         borderColor:'black',
         borderWidth:2,
-        padding:20,
+        fontSize:18
+    },
+    viewInput:{
         width:'70%',
         alignSelf:'center'
     },
-    titleSearch:{
+    titleInput:{
         fontSize:20,
-        fontWeight:'bold',
-        marginLeft:60   
+        fontWeight:'bold'
+    },
+    txtBar:{
+        fontSize:20
     },
     eps:{
         fontSize:20,
