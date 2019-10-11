@@ -69,7 +69,7 @@ const MemberNav = createStackNavigator({
     }
 },
 {
-    initialRouteName: 'EditWebtoon'
+    initialRouteName: 'EditEpisode'
 })
 
 export default createAppContainer(MemberNav);
