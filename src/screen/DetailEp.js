@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Alert, View, StyleSheet, TextInput, Image, FlatList, SafeAreaView, Share, ScrollView} from 'react-native';
+import { Text, Alert, View, StyleSheet, TextInput, Image, FlatList, SafeAreaView, Share, ScrollView, TouchableOpacity} from 'react-native';
 import { Form,Left, Right, Picker, Icon, Button, Item, Label, Input, Header, Title, Body, Container } from 'native-base';
 
 
@@ -42,7 +42,9 @@ class DetailEp extends Component {
             <View>
                 <Header style={styles.bar}>
                     <Left>
+                        <TouchableOpacity onPress={()=>this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))}>
                         <Icon name='arrow-back' style={styles.share} />
+                        </TouchableOpacity>
                     </Left>
                     <Body><Text style={styles.barTitle}>Episode 1</Text></Body>
                     <Right>

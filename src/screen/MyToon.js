@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, ScrollView, Image, StyleSheet } from 'react-native'
+import { View, Text, FlatList, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { Header, Left, Right, Icon, Body, Fab } from 'native-base';
 
 class MyToon extends Component {
@@ -45,7 +45,9 @@ class MyToon extends Component {
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
                             <View style={styles.paddImg}>
-                                <Image source={{uri : item.image}} style={styles.imgList} />
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('EditWebtoon', {prevScreen:'MyToon'})}>
+                                    <Image source={{uri : item.image}} style={styles.imgList} />
+                                </TouchableOpacity>
                                 <View style={styles.titleImg}>
                                     <Text style={styles.txtTitle}>{item.title}</Text>
                                     <Text style={styles.txtEpisode}>{item.episode}</Text>

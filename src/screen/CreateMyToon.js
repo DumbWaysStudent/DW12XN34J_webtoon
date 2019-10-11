@@ -59,7 +59,7 @@ class CreateMyToon extends Component {
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
                         <View style={styles.containerEps} >
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('EditWebtoon', {prevScreen: 'CreateMyToon'})} >
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('EditEpisode', {prevScreen: 'CreateMyToon'})} >
                                 <Image source={{uri : item.url}} style={styles.imgList} />
                             </TouchableOpacity>
                             <View style={styles.txtImg}>

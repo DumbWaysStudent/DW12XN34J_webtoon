@@ -49,7 +49,7 @@ class CreateMyToon extends Component {
                         <Text style={styles.txtBar}>Edit Webtoon</Text>
                     </Body>
                     <Right>
-                        <Icon name='checkmark' style={styles.iconCheck} onPress={() => this.props.navigation.navigate('CreateMyToon')} />
+                        <Icon name='checkmark' style={styles.iconCheck} onPress={() => this.props.navigation.navigate('MyToon')} />
                     </Right>
                 </Header>
 
@@ -69,7 +69,7 @@ class CreateMyToon extends Component {
                             showsVerticalScrollIndicator={false}
                             renderItem={({item}) =>
                             <View style={styles.containerEps} >
-                                <TouchableOpacity  >
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('EditEpisode')} >
                                     <Image source={{uri : item.url}} style={styles.imgList} />
                                 </TouchableOpacity>
                                 <View style={styles.txtImg}>

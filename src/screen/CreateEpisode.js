@@ -40,7 +40,7 @@ class CreateMyToon extends Component {
 
                 <View style={styles.viewInput}>
                     <Text style={styles.titleInput}>Name</Text>
-                    <TextInput  placeholder='Search' style={styles.input} />
+                    <TextInput style={styles.input} />
                 </View>
 
                 <View style={styles.flexEps}>

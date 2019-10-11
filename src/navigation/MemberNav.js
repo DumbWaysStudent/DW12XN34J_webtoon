@@ -9,6 +9,7 @@ import MyToon from '../screen/MyToon';
 import CreateMyToon from '../screen/CreateMyToon';
 import CreateEpisode from '../screen/CreateEpisode';
 import EditWebtoon from '../screen/EditWebtoon';
+import EditEpisode from '../screen/EditEpisode';
 
 
 const MemberNav = createStackNavigator({
@@ -56,6 +57,12 @@ const MemberNav = createStackNavigator({
     },
     EditWebtoon:{
         screen: EditWebtoon,
+        navigationOptions:{
+            header: null,
+        }
+    },
+    EditEpisode:{
+        screen: EditEpisode,
         navigationOptions:{
             header: null,
         }

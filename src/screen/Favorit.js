@@ -41,7 +41,9 @@ class Favorit extends Component {
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
                         <View style={styles.paddImg}>
-                            <Image source={{uri : item.image}} style={styles.imgList} />
+                            <TouchableOpacity  onPress={() => this.props.navigation.navigate('Details', {prevScreen: 'Favorit'})}>
+                                <Image source={{uri : item.image}} style={styles.imgList} />
+                            </TouchableOpacity>
                             <View style={styles.titleImg}>
                                 <Text style={styles.txtTitle}>{item.title}</Text>
                                 <Text style={styles.txtRating}>{item.rating}</Text>
