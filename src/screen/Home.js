@@ -94,7 +94,7 @@ export class Home extends Component {
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                             renderItem={({item}) =>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details')}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {prevScreen: 'Home'})}>
                                 <View style={styles.list}>
                                     <Image style={styles.imagelist} source={{uri : item.image}}/>
                                     <View style={styles.boxImg}>
@@ -222,6 +222,7 @@ const styles = StyleSheet.create({
         paddingLeft:10,
         marginRight:20,
         marginTop:5,   
+        width:90,
     },
     txtBtnFav:{
         fontWeight:'bold',

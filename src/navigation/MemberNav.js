@@ -6,8 +6,9 @@ import Details from '../screen/Details';
 import DetailEp from '../screen/DetailEp';
 import ProfilEdit from '../screen/ProfilEdit';
 import MyToon from '../screen/MyToon';
-import CreateMyToon from '../screen/CreateMyToon'
-import CreateEpisode from '../screen/CreateEpisode'
+import CreateMyToon from '../screen/CreateMyToon';
+import CreateEpisode from '../screen/CreateEpisode';
+import EditWebtoon from '../screen/EditWebtoon';
 
 
 const MemberNav = createStackNavigator({
@@ -52,10 +53,16 @@ const MemberNav = createStackNavigator({
         navigationOptions:{
             header:null,
         }
+    },
+    EditWebtoon:{
+        screen: EditWebtoon,
+        navigationOptions:{
+            header: null,
+        }
     }
 },
 {
-    initialRouteName: 'CreateEpisode'
+    initialRouteName: 'EditWebtoon'
 })
 
 export default createAppContainer(MemberNav);

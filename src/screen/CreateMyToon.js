@@ -36,7 +36,7 @@ class CreateMyToon extends Component {
             <View style={styles.container}>
                 <Header style={styles.header}>
                     <Left>
-                        <Icon name='arrow-back' onPress={() => this.props.navigation.navigate('MyToon')} />
+                        <Icon name='arrow-back' onPress={()=>this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))} />
                     </Left>
                     <Body>
                         <Text style={styles.txtBar}>Create Webtoon</Text>
@@ -59,7 +59,9 @@ class CreateMyToon extends Component {
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
                         <View style={styles.containerEps} >
-                            <Image source={{uri : item.url}} style={styles.imgList} />
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('EditWebtoon', {prevScreen: 'CreateMyToon'})} >
+                                <Image source={{uri : item.url}} style={styles.imgList} />
+                            </TouchableOpacity>
                             <View style={styles.txtImg}>
                                 <Text style={styles.titleEps}>{item.title}</Text>
                                 <Text style={styles.update}>{item.lastUpdate}</Text>

@@ -30,7 +30,7 @@ class MyToon extends Component {
             <View style={styles.container}>
                 <Header style={styles.bar}>
                     <Left>
-                        <Icon name='arrow-back' onPress={() => this.props.navigation.navigate('Profile')} />
+                        <Icon name='arrow-back' onPress={()=>this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))} />
                     </Left>
                     <Body>
                         <Text style={styles.title}>My Webtoon</Text>
@@ -64,7 +64,7 @@ class MyToon extends Component {
                             style={{ backgroundColor: '#4287f5' }}
                             position="bottomRight"
                             onPress={() => this.setState({ active: !this.state.active })}>
-                            <Icon name="add" onPress={() => this.props.navigation.navigate('CreateMyToon')} />
+                            <Icon name="add" onPress={() => this.props.navigation.navigate('CreateMyToon', {prevScreen: 'MyToon'})} />
                         </Fab>
                     </View>
                 </View>

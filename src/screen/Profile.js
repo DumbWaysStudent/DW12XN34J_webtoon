@@ -31,8 +31,7 @@ class Profile extends Component {
                             <Text style={styles.txtCre}>
                                 My Webtoon Creation
                             </Text>
-                            <Icon name='arrow-right' style={styles.iconArrow} onPress={() => this.props.navigation.navigate('MyToon')} />
-                            
+                            <Icon name='arrow-right' style={styles.iconArrow} onPress={() => this.props.navigation.navigate('MyToon', {prevScreen: 'Profile'})} />
                         </TouchableOpacity>
                         
                     </View>
