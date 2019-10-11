@@ -4,7 +4,23 @@ import { Right, Header, Left } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class Profile extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            avatar: this.props.navigation.getParam('avaPic'),
+            name: this.props.navigation.getParam('name')
+        };
+    }
+
     render() {
+
+        if(!this.state.name){
+            this.setState({
+                name: 'Sandy Rahmansyah',
+                avatar: require('../img/img_299586.png'),
+            })
+        }
+
         return (
             <View>
                 <Header style={styles.bar}>
@@ -12,19 +28,21 @@ class Profile extends Component {
                         <Text style={styles.prof}>Profile</Text>
                     </Left>
                     <Right>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('ProfilEdit', {name: this.state.name, avaPic: this.state.avatar})} >
                             <Icon name='pencil' style={styles.iconE} />
                         </TouchableOpacity>
                     </Right>
                 </Header>
+
                 <View>
                     <View>
-                        <Image source={require('../img/img_299586.png')} style={styles.img} />
+                        <Image source={this.state.avatar} style={styles.img} />
                     </View>
                     <View style={styles.name}>
-                        <Text style={styles.txtName}>Your Name</Text>
+                        <Text style={styles.txtName}>{this.state.name}</Text>
                     </View>
                 </View>
+
                 <View>
                     <View>
                         <TouchableOpacity style={styles.create}>

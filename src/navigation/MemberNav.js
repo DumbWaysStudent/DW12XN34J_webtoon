@@ -66,10 +66,10 @@ const MemberNav = createStackNavigator({
         navigationOptions:{
             header: null,
         }
-    }
+    },
 },
 {
-    initialRouteName: 'EditEpisode'
+    initialRouteName: 'ProfilEdit'
 })
 
 export default createAppContainer(MemberNav);
