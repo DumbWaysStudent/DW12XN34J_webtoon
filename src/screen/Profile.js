@@ -27,7 +27,7 @@ class Profile extends Component {
                 </View>
                 <View>
                     <View>
-                        <TouchableOpacity style={styles.create}>
+                        <TouchableOpacity style={styles.create} onPress={() => this.props.navigation.navigate('MyToon')} >
                             <Text style={styles.txtCre}>
                                 My Webtoon Creation
                             </Text>
