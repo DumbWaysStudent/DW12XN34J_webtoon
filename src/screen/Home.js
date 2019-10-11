@@ -222,6 +222,7 @@ const styles = StyleSheet.create({
         paddingLeft:10,
         marginRight:20,
         marginTop:5,   
+        width:80
     },
     txtBtnFav:{
         fontWeight:'bold',

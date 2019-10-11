@@ -59,7 +59,7 @@ return(
   <View>
     <Header style={styles.bar}>
       <Left>
-        <Button transparent onPress={()=>this.props.navigation.goBack()}>
+        <Button transparent onPress={()=>this.props.navigation.navigate('Home')}>
           <Icon name='arrow-back' />
         </Button>
       </Left>      
