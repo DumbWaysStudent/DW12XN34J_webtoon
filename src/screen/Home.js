@@ -37,7 +37,7 @@ export class Home extends Component {
             }, {
                 title: 'Weak Hero',
                 image: 'https://swebtoon-phinf.pstatic.net/20190510_60/1557483841879d0gpe_JPEG/thumb_ipad.jpg'
-            },{
+            }, {
                 title: 'Killstagram',
                 image: 'https://scontent.cdninstagram.com/vp/3797512605f04d3b06b9820856814ccc/5DF0840D/t51.2885-15/e35/c12.0.691.691a/s480x480/67701751_461633028018523_2145113131653080542_n.jpg?_nc_ht=scontent-sea1-1.cdninstagram.com'
             }]
@@ -58,8 +58,9 @@ export class Home extends Component {
         return (
             
             <View style={styles.container}>
+                <ScrollView>
                 
-                <View style={styles.start}>
+                    <View style={styles.start}>
                         <Item>
                             <Input placeholder='Search' style={styles.search} />
                             <Icon name="search" style={styles.iconSearch} />
@@ -79,35 +80,35 @@ export class Home extends Component {
                         />
                     </View>
 
-                <View style={styles.favorite}>
-                    <Text style={styles.txtFav}>Favorite</Text>
+                    <View style={styles.favorite}>
+                        <Text style={styles.txtFav}>Favorite</Text>
                         
-                    <View>
-                        <View >
-                            <FlatList
-                            data={this.state.favCard}
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            renderItem={({item}) =>
-                            <TouchableOpacity onPress={() => alert(item.title)}>
-                                <View style={styles.list}>
-                                    <Image style={styles.imagelist} source={{uri : item.image}}/>
-                                    <View style={styles.boxImg}>
-                                        <Text style={{ textAlign: 'center'}}>{item.title}</Text>
+                        <View>
+                            <View >
+                                <FlatList
+                                data={this.state.favCard}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                renderItem={({item}) =>
+                                <TouchableOpacity onPress={() => alert(item.title)}>
+                                    <View style={styles.list}>
+                                        <Image style={styles.imagelist} source={{uri : item.image}}/>
+                                        <View style={styles.boxImg}>
+                                            <Text style={{ textAlign: 'center'}}>{item.title}</Text>
+                                        </View>
                                     </View>
-                                </View>
-                            </TouchableOpacity>
-                            }
-                            keyExtractor={(item, index) => index.toString()
-                            }/>
+                                </TouchableOpacity>
+                                }
+                                keyExtractor={(item, index) => index.toString()
+                                }/>
+                            </View>
                         </View>
                     </View>
-                </View>
-                <View style={styles.viewAll}>
-                    <Text style={styles.txtAll}>All</Text>
-                </View>
+                    <View style={styles.viewAll}>
+                        <Text style={styles.txtAll}>All</Text>
+                    </View>
                 
-                <ScrollView showsVerticalScrollIndicator={false} >
+                
                     <View style={styles.all}>
                         
                         <View>
@@ -131,7 +132,7 @@ export class Home extends Component {
                             }/>
                         </View>
                     </View>
-                </ScrollView>
+               </ScrollView>
                     
             </View>
                     
