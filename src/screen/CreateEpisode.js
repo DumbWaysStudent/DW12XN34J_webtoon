@@ -159,10 +159,11 @@ const styles = StyleSheet.create({
     txtAdd:{
         fontSize:22,
         fontWeight:'bold',
-        textAlign:'center'
+        textAlign:'center',
+        color:'#1c313a'
     },
     btnAdd:{
-        borderColor:'black',
+        borderColor:'#1c313a',
         borderWidth:2,
         padding:10,
         width:'70%',

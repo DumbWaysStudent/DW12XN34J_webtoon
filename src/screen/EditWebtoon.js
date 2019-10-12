@@ -152,13 +152,11 @@ const styles = StyleSheet.create({
     },
     txtAdd:{
         fontSize:22,
-        fontWeight:'bold',
         textAlign:'center',
         
     },
     txtDel:{
         fontSize:22,
-        fontWeight:'bold',
         color:'white',
         textAlign:'center'
     },

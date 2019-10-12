@@ -63,8 +63,8 @@ export class Home extends Component {
         return (
             
             <View style={styles.container}>
-                
-                <View style={styles.start}>
+                <ScrollView>
+                    <View style={styles.start}>
                         <Item>
                             <Input placeholder='Search' style={styles.search} />
                             <Icon name="search" style={styles.iconSearch} />
@@ -84,37 +84,38 @@ export class Home extends Component {
                         />
                     </View>
 
-                <View style={styles.favorite}>
-                    <Text style={styles.txtFav}>Favorite</Text>
-                        
-                    <View>
-                        <View >
-                            <FlatList
-                            data={this.state.favCard}
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            renderItem={({item}) =>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {prevScreen: 'Home'})}>
-                                <View style={styles.list}>
-                                    <Image style={styles.imagelist} source={{uri : item.image}}/>
-                                    <View style={styles.boxImg}>
-                                        <Text style={{ textAlign: 'center'}}>{item.title}</Text>
+                    <View style={styles.favorite}>
+                        <Text style={styles.txtFav}>Favorite</Text>
+                            
+                        <View>
+                            <View >
+                                <FlatList
+                                data={this.state.favCard}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                renderItem={({item}) =>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {prevScreen: 'Home'})}>
+                                    <View style={styles.list}>
+                                        <Image style={styles.imagelist} source={{uri : item.image}}/>
+                                        <View style={styles.boxImg}>
+                                            <Text style={{ textAlign: 'center'}}>{item.title}</Text>
+                                        </View>
                                     </View>
-                                </View>
-                            </TouchableOpacity>
-                            }
-                            keyExtractor={(item, index) => index.toString()
-                            }/>
+                                </TouchableOpacity>
+                                }
+                                keyExtractor={(item, index) => index.toString()
+                                }/>
+                                
+                            </View>
                             
                         </View>
-                        
                     </View>
-                </View>
-                <View style={styles.viewAll}>
-                    <Text style={styles.txtAll}>All</Text>
-                </View>
+
+                    <View style={styles.viewAll}>
+                        <Text style={styles.txtAll}>All</Text>
+                    </View>
                 
-                <ScrollView showsVerticalScrollIndicator={false} >
+                
                     <View style={styles.all}>
                         
                         <View>
@@ -125,19 +126,21 @@ export class Home extends Component {
                             
                                 <View style={styles.wrapAll}>
                                     <Image style={styles.imagelistAll} source={{uri : item.image}}/>
+
                                     <View style={styles.viewTxtAll}>
                                         <Text style={styles.txtAllList}>{item.title}</Text>
                                         <TouchableOpacity style={styles.btnFav}>
                                             <Text style={styles.txtBtnFav}>+ Favorite</Text>
                                         </TouchableOpacity>
                                     </View>
-                                </View>
-                            
+                                </View>  
+
                             }
                             keyExtractor={(item, index) => index.toString()
                             }/>
                         </View>
                     </View>
+                
                 </ScrollView>
                     
             </View>
@@ -179,9 +182,13 @@ const styles = StyleSheet.create({
     },
     all:{
         marginHorizontal:20,
+        // backgroundColor:'#111',
+        // width:'80%',
+        
     },
     list:{
-        marginLeft:10
+        marginLeft:10,
+        
         
     },
     imagelist : {
@@ -207,6 +214,7 @@ const styles = StyleSheet.create({
     wrapAll:{
         flexDirection:'row',
         paddingTop: 10,
+        
     },
     imagelistAll:{
         width:60,
@@ -226,9 +234,10 @@ const styles = StyleSheet.create({
     },
     txtBtnFav:{
         fontWeight:'bold',
-        backgroundColor:'tomato',
+        backgroundColor:'#1c313a',
         borderColor:'black',
         borderWidth:1,
+        paddingLeft:5
     }
 })
 export default Home;

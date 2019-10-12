@@ -12,7 +12,6 @@ class ProfilEdit extends Component {
         }
     }
     
-
     imagePickerHandler() {
         const options = {
           title: 'Select Avatar',
@@ -25,18 +24,18 @@ class ProfilEdit extends Component {
             path: 'images'
           }
         }
-        ImagePicker.showImagePicker(options, (response) => {
-          console.log('Response =', response);
+    ImagePicker.showImagePicker(options, (response) => {
+        console.log('Response =', response);
     
-          if (response.didCancel) {
-            console.log('User Cancelled image picker')
-          } else if (response.error) {
-            console.log('ImagePicker Error: ', response.error)
-          } else if (response.customButton) {
-            console.log('User tapped custom button: ', response.customButton)
-          } else {
-            const source = { uri: response.uri }
-    
+            if (response.didCancel) {
+                console.log('User Cancelled image picker')
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error)
+            } else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton)
+            } else {
+                const source = { uri: response.uri }
+            
             this.setState({
               avatar: source,
             })

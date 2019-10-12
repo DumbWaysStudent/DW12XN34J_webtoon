@@ -10,7 +10,7 @@ const SwitchNav = createSwitchNavigator({
     MemberNav: MemberNav   
 },
 {
-    initialRouteName: 'GuestNav'
+    initialRouteName: 'BottomTabNavigator'
 }
 )
 

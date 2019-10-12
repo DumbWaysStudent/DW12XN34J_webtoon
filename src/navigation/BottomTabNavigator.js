@@ -13,8 +13,8 @@ const BottomTabNavigator = createMaterialBottomTabNavigator({
         screen: Home,
         navigationOptions: {
             tabBarLabel: 'For You',
-            tabBarIcon : () => (
-                <Icon name='home' size={20} color={'#ffff'} />
+            tabBarIcon : ({tintColor}) => (
+                <Icon name='home' size={20} color={(tintColor)} />
             )
         }
     },
@@ -22,8 +22,8 @@ const BottomTabNavigator = createMaterialBottomTabNavigator({
         screen: Favorit,
         navigationOptions: {
             tabBarLabel: 'Favorit',
-            tabBarIcon: () => (
-                <Icon name='star' size={20} color={'#ffff'} />
+            tabBarIcon: ({tintColor}) => (
+                <Icon name='star' size={20} color={(tintColor)} />
             )
         }
     },
@@ -31,18 +31,24 @@ const BottomTabNavigator = createMaterialBottomTabNavigator({
         screen: Profile,
         navigationOptions: {
             tabBarLabel: 'Profile',
-            tabBarIcon: () => (
-                <Icon name="user" size={20} color={'#ffff'} />
+            tabBarIcon: ({tintColor}) => (
+                <Icon name="user" size={20} color={(tintColor)} />
             )
         }
     },
 },
 
 {    
-    initialRouteName: 'Profile',
-    activeColor: '#fff',  
-    inactiveColor: '#000',  
-    barStyle: { backgroundColor: '#4287f5' },  
+    initialRouteName: 'Home',
+    tabBarOptions:{
+        activeTintColor:'#fff',
+        // inactiveTintColor:'red',
+        // style:{backgroundColor:'red'}
+    },
+    barStyle:{backgroundColor:'#4287f5'}
+    // activeTintColor: '#fff',  
+    // inactiveTintColor: '#000',  
+    // barStyle: { backgroundColor: '#4287f5' },  
   }, 
 )
 

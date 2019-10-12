@@ -139,14 +139,15 @@ const styles = StyleSheet.create({
     txtAdd:{
         fontSize:22,
         fontWeight:'bold',
-        textAlign:'center'
+        textAlign:'center',  
+        color:'white'
     },
     btnAdd:{
-        borderColor:'black',
         borderWidth:2,
         padding:20,
         width:'70%',
-        alignSelf:'center'
+        alignSelf:'center',
+        backgroundColor:'#1c313a'
     },
     input:{
         borderColor:'black',
