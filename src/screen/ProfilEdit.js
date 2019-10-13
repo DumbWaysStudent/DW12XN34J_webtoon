@@ -82,13 +82,15 @@ const styles = StyleSheet.create({
         alignSelf:'center'
       },
     bar:{
-        backgroundColor: '#4287f5'
+        backgroundColor: '#fc4a1a'
     },
     txtHeader:{
         fontSize:24,
+        color:'white'
     },
     iconCheck:{
-        fontSize:36
+        fontSize:36,
+        color:'white'
     },
     content:{
         marginTop:20,

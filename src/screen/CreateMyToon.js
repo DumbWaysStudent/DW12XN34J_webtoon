@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity, TextInput } from 'react-native';
-import { Header, Left, Icon, Body, Right, Input } from 'native-base';
+import { Header, Left, Icon, Body, Right, Card } from 'native-base';
 
 
 
@@ -36,13 +36,13 @@ class CreateMyToon extends Component {
             <View style={styles.container}>
                 <Header style={styles.header}>
                     <Left>
-                        <Icon name='arrow-back' onPress={()=>this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))} />
+                        <Icon name='arrow-back' style={styles.iconBack} onPress={()=>this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))} />
                     </Left>
                     <Body>
                         <Text style={styles.txtBar}>Create Webtoon</Text>
                     </Body>
                     <Right>
-                        <Icon name='checkmark' onPress={() => this.props.navigation.navigate('MyToon')} />
+                        <Icon name='checkmark' style={styles.iconCheck} onPress={() => this.props.navigation.navigate('MyToon')} />
                     </Right>
                 </Header>
 
@@ -52,13 +52,14 @@ class CreateMyToon extends Component {
                 </View>
 
                 <View style={styles.flexEps}>
+
                     <Text style={styles.eps}>Episode</Text>
                     
                         <FlatList 
                         data={this.state.imgEps}
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
-                        <View style={styles.containerEps} >
+                        <Card style={styles.containerEps} >
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('EditEpisode', {prevScreen: 'CreateMyToon'})} >
                                 <Image source={{uri : item.url}} style={styles.imgList} />
                             </TouchableOpacity>
@@ -66,12 +67,12 @@ class CreateMyToon extends Component {
                                 <Text style={styles.titleEps}>{item.title}</Text>
                                 <Text style={styles.update}>{item.lastUpdate}</Text>
                             </View>
-                        </View>
+                        </Card>
                         }
                         />
-                    
                 </View>
-                <View>
+
+                <View style={styles.viewBtn}>
                     <TouchableOpacity style={styles.btnAdd} onPress={() => this.props.navigation.navigate('CreateEpisode')} >
                         <Text style={styles.txtAdd}>+ Add Episode</Text>
                     </TouchableOpacity>
@@ -85,17 +86,34 @@ const styles = StyleSheet.create({
     container:{
         flex:1
     },
+    flexEps:{
+        flex:4,
+        width:'90%',
+        alignSelf:'center'
+    },
+    viewBtn:{
+        flex:1
+    },
     header:{
-        backgroundColor: '#4287f5'
+        backgroundColor: '#fc4a1a'
     },
     containerEps:{
+        paddingHorizontal:20,
         flexDirection:'row',
-        marginLeft:60,
-        marginBottom:20
-              
+        backgroundColor:'#fc4a1a',
+        borderRadius:10,
+        width:'90%',
+        alignSelf:'center'      
     },
     txtBar:{
-        fontSize:20
+        fontSize:20,
+        color:'white'
+    },
+    iconBack:{
+        color:'white'
+    },
+    iconCheck:{
+        color:'white'
     },
     row:{
         flexDirection:'row'
@@ -116,38 +134,43 @@ const styles = StyleSheet.create({
         fontSize:20,
         fontWeight:'bold',
         marginVertical:20,
-        marginLeft:60  
+        marginLeft:40  
     },
     imgList:{
         width:100,
         height:100,
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
+        marginVertical:10,
+        borderRadius:10
     },
     txtImg:{
-        marginLeft:10
+        marginLeft:10,
+        marginVertical:10
     },
     titleEps:{
         fontWeight:'bold',
         fontSize:18,
-        marginBottom:20
+        marginBottom:20,
+        color:'white'
     },
     update:{
         fontWeight:"bold",
         fontSize:12
     },
     txtAdd:{
-        fontSize:22,
+        fontSize:16,
         fontWeight:'bold',
         textAlign:'center',  
         color:'white'
     },
     btnAdd:{
-        borderWidth:2,
         padding:20,
-        width:'70%',
+        width:'40%',
         alignSelf:'center',
-        backgroundColor:'#1c313a'
+        backgroundColor:'#fc4a1a',
+        marginTop:20,
+        borderRadius:10
     },
     input:{
         borderColor:'black',
@@ -156,7 +179,8 @@ const styles = StyleSheet.create({
     },
     viewInput:{
         width:'70%',
-        alignSelf:'center'
+        alignSelf:'center',
+        marginBottom:10
     },
     titleInput:{
         fontSize:20,

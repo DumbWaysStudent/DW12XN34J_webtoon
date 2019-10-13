@@ -45,7 +45,7 @@ const BottomTabNavigator = createMaterialBottomTabNavigator({
         // inactiveTintColor:'red',
         // style:{backgroundColor:'red'}
     },
-    barStyle:{backgroundColor:'#4287f5'}
+    barStyle:{backgroundColor:'#fc4a1a'}
     // activeTintColor: '#fff',  
     // inactiveTintColor: '#000',  
     // barStyle: { backgroundColor: '#4287f5' },  

@@ -67,20 +67,23 @@ class Profile extends Component {
 
 const styles = StyleSheet.create({
     bar:{
-        backgroundColor: '#4287f5'
+        backgroundColor: '#fc4a1a'
     },
     prof:{
-        fontSize:22
+        fontSize:22,
+        color:'white'
     },
     iconE:{
         fontSize:28,
-        paddingRight:5
+        paddingRight:5,
+        color:'white'
     },
     img:{
         width:200,
         height:200,
         alignSelf:'center',
-        marginTop:15
+        marginTop:15,
+        borderRadius:200/2
     },
     name:{
         alignItems:'center',
@@ -91,23 +94,28 @@ const styles = StyleSheet.create({
         fontSize:32
     },
     create:{
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
         flexDirection:'row',
+        backgroundColor:'#fcb045'
     },
     logout:{
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
         borderTopWidth:0,
+        backgroundColor:'#fd1d1d'
     },
     txtCre:{
         fontSize:24,
         paddingVertical:10,
+        paddingLeft:10,
         flex:8
     },
     txtLog:{
         fontSize:24,
-        paddingVertical:10
+        paddingVertical:10,
+        paddingLeft:10,
+        fontWeight:'bold'
     },
     iconArrow:{
         fontSize:24,

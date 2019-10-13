@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity, TextInput } from 'react-native';
-import { Header, Left, Icon, Body, Right, Input, Button } from 'native-base';
+import { Header, Left, Icon, Body, Right, Card, Button } from 'native-base';
 
 
 
@@ -19,6 +19,21 @@ class CreateMyToon extends Component {
               title: '2.Introduction.png',
               url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
             },
+            {
+                id:2,
+                title: '3.Lorem Ipsum.png',
+                url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
+            },
+            {
+                id:3,
+                title: '4.Lorem Ipsum.png',
+                url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
+            },
+            {
+                id:4,
+                title: '5.Lorem Ipsum.png',
+                url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
+            },
           ]
     }
 }
@@ -26,15 +41,16 @@ class CreateMyToon extends Component {
     render() {
         return (
             <View style={styles.container}>
+
                 <Header style={styles.header}>
                     <Left>
-                        <Icon name='arrow-back' onPress={() => this.props.navigation.navigate('CreateMyToon')} />
+                        <Icon name='arrow-back' style={styles.iconBack} onPress={() => this.props.navigation.navigate('CreateMyToon')} />
                     </Left>
                     <Body>
                         <Text style={styles.txtBar}>Create Episode</Text>
                     </Body>
                     <Right>
-                        <Icon name='checkmark' onPress={() => this.props.navigation.navigate('CreateMyToon')} />
+                        <Icon name='checkmark' style={styles.iconCheck} onPress={() => this.props.navigation.navigate('CreateMyToon')} />
                     </Right>
                 </Header>
 
@@ -50,7 +66,7 @@ class CreateMyToon extends Component {
                         data={this.state.addImg}
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
-                        <View style={styles.containerEps} >
+                        <Card style={styles.containerEps} >
                             <Image source={{uri : item.url}} style={styles.imgList} />
                             <View style={styles.txtImg}>
                                 <Text style={styles.titleEps}>{item.title}</Text>
@@ -60,20 +76,22 @@ class CreateMyToon extends Component {
                                     </Button>
                                 </View>
                             </View>                           
-                        </View>                        
+                        </Card>                        
                         }                        
                         />
-                        
-                    
                 </View>
-                <View>
-                    <TouchableOpacity style={styles.btnAdd} >
-                        <Text style={styles.txtAdd}>+ Image</Text>
-                    </TouchableOpacity>
+
+                <View style={styles.flexBtn} >
+                    <View>
+                        <TouchableOpacity style={styles.btnAdd} >
+                            <Text style={styles.txtAdd}>+ Image</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View>
+                        <TextInput style={styles.test} /> 
+                    </View>
                 </View>
-                <View>
-                    <TextInput style={styles.test} /> 
-                </View>
+
             </View>
         );
     }
@@ -87,7 +105,8 @@ const styles = StyleSheet.create({
     },
     viewInput:{
         width:'70%',
-        alignSelf:'center'
+        alignSelf:'center',
+        flex:0.7
     },
     titleInput:{
         fontSize:20,
@@ -96,11 +115,25 @@ const styles = StyleSheet.create({
     container:{
         flex:1
     },
+    flexEps:{
+        flex:4
+    },
+    flexBtn:{
+        flex:1
+    },
     containerEps:{
+        paddingHorizontal:20,
         flexDirection:'row',
-        marginLeft:60,
-        marginBottom:20
-              
+        backgroundColor:'#fc4a1a',
+        borderRadius:10,
+        width:'90%',
+        alignSelf:'center' 
+    },
+    iconBack:{
+        color:'white'
+    },
+    iconCheck:{
+        color:'white'
     },
     containerSearch:{
         borderColor:'black',
@@ -109,10 +142,11 @@ const styles = StyleSheet.create({
         marginVertical:5
     },
     header:{
-        backgroundColor:'#4287f5'
+        backgroundColor:'#fc4a1a'
     },
     txtBar:{
-        fontSize:20
+        fontSize:20,
+        color:'white'
     },
     row:{
         flexDirection:'row'
@@ -139,12 +173,14 @@ const styles = StyleSheet.create({
     imgList:{
         width:100,
         height:100,
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
-        
+        marginVertical:10,
+        borderRadius:10
     },
     txtImg:{
         marginLeft:10,
+        marginVertical:10,
         flexDirection:'column'
     },
     titleEps:{
@@ -159,25 +195,26 @@ const styles = StyleSheet.create({
     txtAdd:{
         fontSize:22,
         fontWeight:'bold',
-        textAlign:'center',
-        color:'#1c313a'
+        textAlign:'center',  
+        color:'white'
     },
     btnAdd:{
-        borderColor:'#1c313a',
-        borderWidth:2,
-        padding:10,
-        width:'70%',
-        alignSelf:'center'
+        padding:20,
+        width:'40%',
+        alignSelf:'center',
+        backgroundColor:'#fc4a1a',
+        marginTop:20,
+        borderRadius:10
     },
     buttonDel:{
-        borderColor:'black',
-        backgroundColor:'#1c313a',
+        backgroundColor:'#fd1d1d',
         width:70,
+        borderRadius:5
     },
     del:{
         fontSize:16,
-        fontWeight:'bold',
-        paddingLeft:10
+        paddingLeft:10,
+        color:'white'
     }
 })
 export default CreateMyToon;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity, TextInput } from 'react-native';
-import { Header, Left, Icon, Body, Right, Input } from 'native-base';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Header, Left, Icon, Body, Right, Card } from 'native-base';
 
 
 
@@ -19,7 +18,15 @@ class CreateMyToon extends Component {
               id:1,
               title: '2.Introduction.png',
               url: 'https://www.maid.my.id/wp-content/uploads/2018/07/22151.jpg',
-            },
+            },{
+                id:1,
+                title: '2.Lorem Ipsum.png',
+                url: 'https://www.maid.my.id/wp-content/uploads/2018/07/22151.jpg',
+              },{
+                id:1,
+                title: '2.Lorem Ipsum.png',
+                url: 'https://www.maid.my.id/wp-content/uploads/2018/07/22151.jpg',
+              },
           ]
     }
 }
@@ -29,7 +36,7 @@ class CreateMyToon extends Component {
             <View style={styles.container}>
                 <Header style={styles.header}>
                     <Left>
-                        <Icon name='arrow-back' onPress={() => this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))} />
+                        <Icon name='arrow-back' style={styles.iconBack} onPress={() => this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))} />
                     </Left>
                     <Body>
                         <Text style={styles.txtBar}>Edit Episode</Text>
@@ -44,26 +51,25 @@ class CreateMyToon extends Component {
                     <TextInput  placeholder='Search' style={styles.input} value='Episode 1' />
                 </View>
 
-                <Text style={styles.eps}>Add Images</Text>
-
-                
-                    <View style={styles.flexEps}>                        
-                            <FlatList 
-                            data={this.state.editEps}
-                            showsVerticalScrollIndicator={false}
-                            renderItem={({item}) =>
-                            <View style={styles.containerEps} >
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('EditEpisode')} >
-                                    <Image source={{uri : item.url}} style={styles.imgList} />
-                                </TouchableOpacity>
-                                <View style={styles.txtImg}>
-                                    <Text style={styles.titleEps}>{item.title}</Text>
-                                    <Text style={styles.update}>{item.lastUpdate}</Text>
-                                </View>
+                <View style={styles.flexEps}>   
+                    <Text style={styles.eps}>Add Images</Text>                     
+                        <FlatList 
+                        data={this.state.editEps}
+                        showsVerticalScrollIndicator={false}
+                        renderItem={({item}) =>
+                        <Card style={styles.containerEps} >
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('EditEpisode')} >
+                                <Image source={{uri : item.url}} style={styles.imgList} />
+                            </TouchableOpacity>
+                            <View style={styles.txtImg}>
+                                <Text style={styles.titleEps}>{item.title}</Text>
+                                <Text style={styles.update}>{item.lastUpdate}</Text>
                             </View>
-                            }
-                            />  
-                    </View>
+                        </Card>
+                        }
+                        />  
+                </View>
+
                 <View style={styles.buttonBottom}>
                     <TouchableOpacity style={styles.btnAdd} >
                         <Text style={styles.txtAdd}>+ Image</Text>
@@ -82,17 +88,19 @@ const styles = StyleSheet.create({
         flex:1
     },
     header:{
-        backgroundColor: '#4287f5'
+        backgroundColor: '#fc4a1a'
     },
     containerEps:{
+        paddingHorizontal:20,
         flexDirection:'row',
-        marginHorizontal:60,
-        marginBottom:20,
-        padding:2,
-        borderBottomWidth:2
+        backgroundColor:'#fc4a1a',
+        borderRadius:10,
+        width:'80%',
+        alignSelf:'center' 
     },
     txtBar:{
-        fontSize:20
+        fontSize:20,
+        color:'white'
     },
     row:{
         flexDirection:'row'
@@ -118,11 +126,15 @@ const styles = StyleSheet.create({
     imgList:{
         width:100,
         height:100,
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
+        marginVertical:10,
+        borderRadius:10
     },
     txtImg:{
-        marginLeft:10
+        marginLeft:10,
+        marginVertical:10,
+        flexDirection:'column'
     },
     titleEps:{
         fontWeight:'bold',
@@ -137,25 +149,28 @@ const styles = StyleSheet.create({
         fontSize:22,
         fontWeight:'bold',
         textAlign:'center',
-        
+        paddingTop:7,
+        color:'white'
     },
     txtDel:{
-        fontSize:22,
+        fontSize:20,
         color:'white',
-        textAlign:'center'
+        textAlign:'center',
+        paddingTop:7
     },
     btnAdd:{
-        borderColor:'black',
-        borderWidth:2,
-        width:'60%',
-        alignSelf:'center'
+        width:'40%',
+        height:'40%',
+        alignSelf:'center',
+        backgroundColor:'#fc4a1a',
+        borderRadius:4
     },
     btnDel:{
-        borderColor:'black',
-        borderWidth:2,
-        backgroundColor:'#1c313a',
-        width:'60%',
+        width:'40%',
+        height:'40%',
         alignSelf:'center',
+        backgroundColor:'#fd1d1d',
+        borderRadius:4,
         marginTop:4
     },
     input:{
@@ -166,7 +181,8 @@ const styles = StyleSheet.create({
     },
     viewInput:{
         width:'70%',
-        alignSelf:'center'
+        alignSelf:'center',
+        flex:0.7
     },
     titleInput:{
         fontSize:20,
@@ -174,14 +190,18 @@ const styles = StyleSheet.create({
     },
     buttonBottom:{
         paddingTop:10,
-        
+        flex:1
     },
     iconCheck:{
         fontSize:36,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        color:'white'
+    },
+    iconBack:{
+        color:'white'
     },
     flexEps:{
-        
+        flex:4
     }
 })
 export default CreateMyToon;

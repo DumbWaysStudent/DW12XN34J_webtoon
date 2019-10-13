@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native';
-import { Input, Item } from 'native-base';
+import LinearGradient from 'react-native-linear-gradient';
+import { Input, Item, Icon, Card } from 'native-base';
 import Slideshow from 'react-native-image-slider-show';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
 export class Home extends Component {
@@ -61,90 +61,90 @@ export class Home extends Component {
 
     render() {
         return (
-            
-            <View style={styles.container}>
-                <ScrollView>
-                    <View style={styles.start}>
-                        <Item>
-                            <Input placeholder='Search' style={styles.search} />
-                            <Icon name="search" style={styles.iconSearch} />
-                        </Item>
-                    </View>
+                <View style={styles.container}>
+                    <LinearGradient colors={['#fd1d1d','#fcb045']} style={styles.gradient}>
 
-                    <View style={styles.slide}>
-                        <Slideshow
-                            height={150}
-                            overlay={true}
-                            arrowSize={0}
-                            indicatorSelectedColor="#4287f5"
-                            titleStyle={{color : "white"}}
-                            dataSource={this.state.banners}
-                            position={this.state.position}
-                            onPositionChanged={position => this.setState({ position })}
-                        />
-                    </View>
+                        <ScrollView>
+                            <View style={styles.start}>
+                                <Item>
+                                    <Input placeholder='Search' style={styles.search} />
+                                    <Icon name="search" style={styles.iconSearch} />
+                                </Item>
+                            </View>
 
-                    <View style={styles.favorite}>
-                        <Text style={styles.txtFav}>Favorite</Text>
-                            
-                        <View>
-                            <View >
-                                <FlatList
-                                data={this.state.favCard}
-                                horizontal={true}
-                                showsHorizontalScrollIndicator={false}
-                                renderItem={({item}) =>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {prevScreen: 'Home'})}>
-                                    <View style={styles.list}>
-                                        <Image style={styles.imagelist} source={{uri : item.image}}/>
-                                        <View style={styles.boxImg}>
-                                            <Text style={{ textAlign: 'center'}}>{item.title}</Text>
-                                        </View>
+                            <View style={styles.slide}>
+                                <Slideshow
+                                    height={150}
+                                    overlay={true}
+                                    arrowSize={0}
+                                    indicatorSelectedColor="#fc4a1a"
+                                    titleStyle={{color : "white"}}
+                                    dataSource={this.state.banners}
+                                    position={this.state.position}
+                                    onPositionChanged={position => this.setState({ position })}
+                                />
+                            </View>
+
+                            <View style={styles.favorite}>
+                                <Text style={styles.txtFav}>Favorite</Text>
+                                    
+                                
+                                    <View style={styles.backList} >
+                                        <FlatList
+                                        data={this.state.favCard}
+                                        horizontal={true}
+                                        showsHorizontalScrollIndicator={false}
+                                        renderItem={({item}) =>
+                                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {prevScreen: 'Home'})}>
+                                            <View style={styles.list}>
+                                                <Image style={styles.imagelist} source={{uri : item.image}}/>
+                                                <View style={styles.boxImg}>
+                                                    <Text style={styles.txtFavList}>{item.title}</Text>
+                                                </View>
+                                            </View>
+                                        </TouchableOpacity>
+                                        }
+                                        keyExtractor={(item, index) => index.toString()
+                                        }/>
+                                        
                                     </View>
-                                </TouchableOpacity>
-                                }
-                                keyExtractor={(item, index) => index.toString()
-                                }/>
+                                    
                                 
                             </View>
-                            
-                        </View>
-                    </View>
 
-                    <View style={styles.viewAll}>
-                        <Text style={styles.txtAll}>All</Text>
-                    </View>
-                
-                
-                    <View style={styles.all}>
+                            <View style={styles.viewAll}>
+                                <Text style={styles.txtAll}>All</Text>
+                            </View>
                         
-                        <View>
-                            <FlatList
-                            data={this.state.listImg}
-                            showsVerticalScrollIndicator={false}
-                            renderItem={({item}) =>
-                            
-                                <View style={styles.wrapAll}>
-                                    <Image style={styles.imagelistAll} source={{uri : item.image}}/>
+                        
+                            <View style={styles.all}>
+                                
+                                <View>
+                                    <FlatList
+                                    data={this.state.listImg}
+                                    showsVerticalScrollIndicator={false}
+                                    renderItem={({item}) =>
+                                    
+                                        <Card style={styles.wrapAll}>
+                                            <Image style={styles.imagelistAll} source={{uri : item.image}}/>
+                                            <View style={styles.viewTxtAll}>
+                                                <Text style={styles.txtAllList}>{item.title}</Text>
+                                                <TouchableOpacity style={styles.btnFav}>
+                                                    <Text style={styles.txtBtnFav}>+ Favorite</Text>
+                                                </TouchableOpacity>
+                                            </View>
+                                        </Card>  
 
-                                    <View style={styles.viewTxtAll}>
-                                        <Text style={styles.txtAllList}>{item.title}</Text>
-                                        <TouchableOpacity style={styles.btnFav}>
-                                            <Text style={styles.txtBtnFav}>+ Favorite</Text>
-                                        </TouchableOpacity>
-                                    </View>
-                                </View>  
-
-                            }
-                            keyExtractor={(item, index) => index.toString()
-                            }/>
-                        </View>
-                    </View>
-                
-                </ScrollView>
-                    
-            </View>
-                    
+                                    }
+                                    keyExtractor={(item, index) => index.toString()
+                                    }/>
+                                </View>
+                            </View>
+                        
+                        </ScrollView>
+                    </LinearGradient>
+                        
+                </View>      
         );
     }
 }
@@ -153,8 +153,11 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
     },
+    gradient:{
+        flex:1
+    },
     start:{
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
         marginHorizontal:20,
         marginVertical:5
@@ -164,12 +167,14 @@ const styles = StyleSheet.create({
     },
     iconSearch:{
         fontSize:20,
-        marginRight:10
+        marginRight:10,
+        fontSize:30,
+        color:'white'
     },
     slide:{
         marginHorizontal:20,
         marginVertical:10,
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
     },
     favorite:{
@@ -179,6 +184,11 @@ const styles = StyleSheet.create({
     txtFav:{
         fontSize:18,
         fontWeight:'bold',
+        color:'white'
+    },
+    txtFavList:{
+        color:'white',
+        textAlign:'center'
     },
     all:{
         marginHorizontal:20,
@@ -187,14 +197,12 @@ const styles = StyleSheet.create({
         
     },
     list:{
-        marginLeft:10,
-        
-        
+        marginLeft:10, 
     },
     imagelist : {
         width: '100%', 
         height:120,
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:3,    
     },
     boxImg:{
@@ -206,21 +214,28 @@ const styles = StyleSheet.create({
     txtAll:{
         fontSize:18,
         fontWeight:'bold',
+        color:'white'
     },
     txtAllList:{
         fontSize:16,
-        marginLeft:10
+        marginLeft:10,
+        color:'white'
     },
     wrapAll:{
         flexDirection:'row',
         paddingTop: 10,
-        
+        backgroundColor:'#fc4a1a',
+        borderRadius:10,
+        borderColor:'#fc4a1a'
     },
     imagelistAll:{
         width:60,
         height:60,
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
+        borderRadius:10,
+        marginLeft:10,
+        marginBottom:10
     },
     viewTxtAll:{
         
@@ -233,11 +248,15 @@ const styles = StyleSheet.create({
         width:90,
     },
     txtBtnFav:{
-        fontWeight:'bold',
-        backgroundColor:'#1c313a',
+        backgroundColor:'#F0CB35',
         borderColor:'black',
         borderWidth:1,
-        paddingLeft:5
+        paddingLeft:5,
+        borderRadius:10,
+        fontWeight:'bold'
+    },
+    listAll:{
+        backgroundColor:'tomato'
     }
 })
 export default Home;
