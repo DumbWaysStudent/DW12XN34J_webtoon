@@ -1,7 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const webtoon = sequelize.define('webtoon', {
-    title: DataTypes.STRING,
+    title: {type: DataTypes.STRING,
+            allowNull : false,
+            validate:{
+              notEmpty :true
+            }
+    },
     genre: DataTypes.STRING,
     is_favorite: DataTypes.BOOLEAN,
     image: DataTypes.STRING,
@@ -9,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   webtoon.associate = function(models) {
     // associations can be defined here
+    webtoon.belongsTo(models.user,{
+      as:"createdBy",
+      foreignKey:'created_by'
+    });
   };
   return webtoon;
 };

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('episode_images', {
+    return queryInterface.createTable('pages', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       page: {
+        allowNull:false,
         type: Sequelize.INTEGER
       },
       image: {
@@ -18,11 +19,21 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull:false,
         references:{
-          model: 'episodes',
-          key: 'id',
+          model:'episodes',
+          key:'id'
         },
-        onUpdate: 'cascade',
-        onDelete: 'cascade',
+        onUpdate:'cascade',
+        onDelete:'cascade'
+      },
+      id_webtoon: {
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        references:{
+          model:'webtoons',
+          key:'id'
+        },
+        onUpdate:'cascade',
+        onDelete:'cascade'
       },
       createdAt: {
         allowNull: false,
@@ -35,6 +46,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('episode_images');
+    return queryInterface.dropTable('pages');
   }
 };
