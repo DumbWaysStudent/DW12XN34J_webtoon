@@ -1,5 +1,5 @@
 const models = require('../models')
-const Page = models.pages
+const Page = models.page
 
 exports.getPages = (req, res)=>{
     const webtoonId = req.params.id_webtoon

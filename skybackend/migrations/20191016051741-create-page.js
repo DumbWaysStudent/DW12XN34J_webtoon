@@ -16,21 +16,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       id_episode: {
-        type: Sequelize.INTEGER,
-        allowNull:false,
-        references:{
-          model:'episodes',
-          key:'id'
-        },
-        onUpdate:'cascade',
-        onDelete:'cascade'
+        type: Sequelize.INTEGER
       },
       id_webtoon: {
         type: Sequelize.INTEGER,
         allowNull:false,
         references:{
-          model:'webtoons',
-          key:'id'
+          model:'episodes',
+          key:'id_webtoon'
         },
         onUpdate:'cascade',
         onDelete:'cascade'

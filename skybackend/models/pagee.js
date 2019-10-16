@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const pages = sequelize.define('pages', {
+  const pagee = sequelize.define('pagee', {
     page: {type: DataTypes.INTEGER,
           allowNull: false,
           validate:{
@@ -9,24 +9,24 @@ module.exports = (sequelize, DataTypes) => {
     },
     image: DataTypes.STRING,
     id_episode: {type: DataTypes.INTEGER,
-                allowNull: false,
-                validate:{
-                  notEmpty:true
-                }
+              allowNull: false,
+              validate:{
+                notEmpty:true
+              }
     },
     id_webtoon: {type: DataTypes.INTEGER,
-                allowNull:false,
-                validate:{
-                  notEmpty:true
+                allowNull: false,
+                validate: {
+                  notEmpty: true
                 }
     }
   }, {});
-  pages.associate = function(models) {
+  pagee.associate = function(models) {
     // associations can be defined here
-    pages.belongsTo(models.episode, {
+    pagee.belongsTo(models.episode, {
       as:"episodeId",
       foreignKey: "id_episode"
     });
   };
-  return pages;
+  return pagee;
 };
