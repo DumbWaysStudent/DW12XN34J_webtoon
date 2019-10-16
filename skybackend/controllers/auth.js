@@ -10,7 +10,7 @@ exports.login = (req, res) =>{
     User.findOne({where: {email, password}}).then(user=>{
 
         if(user){
-            const token = jwt.sign({ userId: user.id}, 'my-secret-key')
+            const token = 'Bearer ' + jwt.sign({ userId: user.id}, 'my-secret-key')
             res.send({
                 email,
                 token
@@ -28,7 +28,7 @@ exports.register = (req, res) =>{
     User.findOne({where: {email, password}}).then(user=>{
 
         if(user){
-            const token = jwt.sign({ userId: user.id }, 'my-secret-key')
+            const token = 'Bearer' + jwt.sign({ userId: user.id }, 'my-secret-key')
             res.send({
                 email,
                 token

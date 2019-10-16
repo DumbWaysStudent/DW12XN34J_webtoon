@@ -8,3 +8,11 @@ exports.index = (req, res)=>{
         },
     }).then(result=> res.send(result));
 };
+
+// exports.showEps = (req, res)=>{
+//     Episode.findAll({
+//         where:{
+//             id_webtoon
+//         }
+//     })
+// }
