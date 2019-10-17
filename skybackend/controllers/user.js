@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
 const models = require('../models')
 const User = models.user
-const Webtoon = models.webtoon
 
 exports.store = (req, res) =>{
     const token = jwt.sign({ email: req.body.email}, 'my-secret-key')
@@ -29,19 +28,4 @@ exports.store = (req, res) =>{
             })
         }
     })
-}
-
-exports.show = (req, res)=>{
-    const { user_id } = req.params
-    console.log(user_id)
-
-    User.findAll({
-        where: { id: user_id },
-        include:[{
-            model: Webtoon,
-            as: 'webtoonid'
-        }]
-    }).then(result=>
-        res.send(result)
-    )
 }

@@ -7,7 +7,7 @@ const app = express()
 const port = 9000
 
 const AuthController = require('./controllers/auth')
-// const UserController = require('./controllers/user')
+const UserController = require('./controllers/user')
 // const WebtoonController = require('./controllers/webtoons')
 // const EpisodeController = require('./controllers/episodes')
 // const EpisodePage = require('./controllers/page')
@@ -20,7 +20,7 @@ app.use(bodyParser.json())
 app.group('/api/v1', (router)=>{
     
     router.post('/login', AuthController.login)
-    // router.post('/register', UserController.store)
+    router.post('/register', UserController.store)
 
     // // Menampilkan Seluruh Webtoon
     // router.get('/webtoons', WebtoonController.index)
