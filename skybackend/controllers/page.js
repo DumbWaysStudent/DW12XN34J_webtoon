@@ -25,14 +25,14 @@ exports.createPage = (req, res)=>{
     }).then(result=> res.send(result))
 }
 
-// exports.deletePage = (req, res)=>{
-//     const { image_id } = req.params
-//     Page.destroy({
-//         where: {id:image_id}
-//     }).then(result =>
-//         res.send({
-//             id: image_id,
-//             message:'Episode Berhasil dihapus'
-//         })
-//     )
-// }
+exports.deletePage = (req, res)=>{
+    const { image_id } = req.params
+    Page.destroy({
+        where: {id:image_id}
+    }).then(result =>
+        res.send({
+            id: image_id,
+            message:'Episode Berhasil dihapus'
+        })
+    )
+}

@@ -56,7 +56,7 @@ app.group('/api/v1', (router)=>{
 
     // //Membuat/mengahpus halaman untuk episode tertentu
     router.post('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/image', authenticated, EpisodePage.createPage)
-    // router.delete('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/image/:image_id', authenticated, EpisodePage.deletePage)
+    router.delete('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/image/:image_id', authenticated, EpisodePage.deletePage)
 })
 
 app.listen(port, () => console.log('Listening o Port ${9000}'))
