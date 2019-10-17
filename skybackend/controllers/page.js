@@ -16,14 +16,14 @@ exports.getPages = (req, res)=>{
     })
 };
 
-// exports.createPage = (req, res)=>{
-//     const{page, image} = req.body
-//     Page.create({
-//         id_episode: req.params.episode_id,
-//         page,
-//         image
-//     }).then(result=> res.send(result))
-// }
+exports.createPage = (req, res)=>{
+    const{page, image} = req.body
+    Page.create({
+        id_episode: req.params.episode_id,
+        page,
+        image
+    }).then(result=> res.send(result))
+}
 
 // exports.deletePage = (req, res)=>{
 //     const { image_id } = req.params
