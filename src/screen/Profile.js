@@ -4,7 +4,23 @@ import { Right, Header, Left } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class Profile extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            avatar: this.props.navigation.getParam('avaPic'),
+            name: this.props.navigation.getParam('name')
+        };
+    }
+
     render() {
+
+        if(!this.state.name){
+            this.setState({
+                name: 'Sandy Rahmansyah',
+                avatar: require('../img/img_299586.png'),
+            })
+        }
+
         return (
             <View>
                 <Header style={styles.bar}>
@@ -12,19 +28,21 @@ class Profile extends Component {
                         <Text style={styles.prof}>Profile</Text>
                     </Left>
                     <Right>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('ProfilEdit', {name: this.state.name, avaPic: this.state.avatar})} >
                             <Icon name='pencil' style={styles.iconE} />
                         </TouchableOpacity>
                     </Right>
                 </Header>
+
                 <View>
                     <View>
-                        <Image source={require('../img/img_299586.png')} style={styles.img} />
+                        <Image source={this.state.avatar} style={styles.img} />
                     </View>
                     <View style={styles.name}>
-                        <Text style={styles.txtName}>Your Name</Text>
+                        <Text style={styles.txtName}>{this.state.name}</Text>
                     </View>
                 </View>
+
                 <View>
                     <View>
                         <TouchableOpacity style={styles.create}>
@@ -49,20 +67,23 @@ class Profile extends Component {
 
 const styles = StyleSheet.create({
     bar:{
-        backgroundColor: '#4287f5'
+        backgroundColor: '#fc4a1a'
     },
     prof:{
-        fontSize:22
+        fontSize:22,
+        color:'white'
     },
     iconE:{
         fontSize:28,
-        paddingRight:5
+        paddingRight:5,
+        color:'white'
     },
     img:{
         width:200,
         height:200,
         alignSelf:'center',
-        marginTop:15
+        marginTop:15,
+        borderRadius:200/2
     },
     name:{
         alignItems:'center',
@@ -73,23 +94,28 @@ const styles = StyleSheet.create({
         fontSize:32
     },
     create:{
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
         flexDirection:'row',
+        backgroundColor:'#fcb045'
     },
     logout:{
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
         borderTopWidth:0,
+        backgroundColor:'#fd1d1d'
     },
     txtCre:{
         fontSize:24,
         paddingVertical:10,
+        paddingLeft:10,
         flex:8
     },
     txtLog:{
         fontSize:24,
-        paddingVertical:10
+        paddingVertical:10,
+        paddingLeft:10,
+        fontWeight:'bold'
     },
     iconArrow:{
         fontSize:24,

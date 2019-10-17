@@ -42,13 +42,13 @@ class DetailEp extends Component {
             <View>
                 <Header style={styles.bar}>
                     <Left>
-                        <TouchableOpacity onPress={()=>this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))}>
-                        <Icon name='arrow-back' style={styles.share} />
+                        <TouchableOpacity style={styles.back} onPress={()=>this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))}>
+                        <Icon name='arrow-back' style={styles.back} />
                         </TouchableOpacity>
                     </Left>
                     <Body><Text style={styles.barTitle}>Episode 1</Text></Body>
                     <Right>
-                        <Icon name='share' onPress={this.onClickShare} />
+                        <Icon name='share' style={styles.share} onPress={this.onClickShare} />
                     </Right>
                 </Header>
                 <SafeAreaView>
@@ -73,13 +73,17 @@ class DetailEp extends Component {
 
 const styles = StyleSheet.create({
     bar:{
-        backgroundColor:'#4287f5'
-      },
+        backgroundColor:'#fc4a1a'
+    },
+    back:{
+        color:'white',
+    },
     share:{
-        backgroundColor:'#4287f5'
+        color:'white'
     },
     barTitle:{
         fontSize:20,
+        color:'white'
     },
     imgEps:{
         width: '100%',

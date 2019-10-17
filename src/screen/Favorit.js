@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native';
-import { Input, Item, Icon } from 'native-base';
+import { Input, Item, Icon, Card } from 'native-base';
+import LinearGradient from 'react-native-linear-gradient';
 
 class Favorit extends Component {
 
@@ -28,34 +29,40 @@ class Favorit extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.search}>
-                    <Item>
-                        <Input placeholder='Search' />
-                        <Icon name='search' style={styles.iconSearch} />
-                    </Item>
-                </View>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    <View>                    
-                        <FlatList 
-                        data={this.state.favCard}
-                        showsVerticalScrollIndicator={false}
-                        renderItem={({item}) =>
-                        <View style={styles.paddImg}>
-                            <TouchableOpacity  onPress={() => this.props.navigation.navigate('Details', {prevScreen: 'Favorit'})}>
-                                <Image source={{uri : item.image}} style={styles.imgList} />
-                            </TouchableOpacity>
-                            <View style={styles.titleImg}>
-                                <Text style={styles.txtTitle}>{item.title}</Text>
-                                <Text style={styles.txtRating}>{item.rating}</Text>
+                
+
+                    <View style={styles.search}>
+                        <Item>
+                            <Input placeholder='Search' />
+                            <Icon name='search' style={styles.iconSearch} />
+                        </Item>
+                    </View>
+
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <View>                   
+                            <FlatList 
+                            data={this.state.favCard}
+                            showsVerticalScrollIndicator={false}
+                            renderItem={({item}) =>
+                            
+                            <Card style={styles.paddImg}>
+                                <TouchableOpacity  onPress={() => this.props.navigation.navigate('Details', {prevScreen: 'Favorit'})}>
+                                    <Image source={{uri : item.image}} style={styles.imgList} />
+                                </TouchableOpacity>
+                                <View style={styles.titleImg}>
+                                    <Text style={styles.txtTitle}>{item.title}</Text>
+                                    <Text style={styles.txtRating}>{item.rating}</Text>
+                                </View>
+                            </Card>
+                            
+                            }
+                            keyExtractor={(item, index) => index.toString()
+                            }
+                            />
+                            
                             </View>
-                        </View>
-                        }
-                        keyExtractor={(item, index) => index.toString()
-                        }
-                        />
-                        
-                        </View>
-                </ScrollView>
+                    </ScrollView>
+
                 
             </View>
         );
@@ -65,6 +72,9 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
     },
+    gradient:{
+        flex:1
+    },
     search:{
         borderColor:'black',
         borderWidth:2,
@@ -72,20 +82,27 @@ const styles = StyleSheet.create({
         marginVertical:5
     },
     iconSearch:{
-        paddingRight:20
+        paddingRight:20,
+        fontSize:30
     },
     imgList:{
         width:100,
         height:100,
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
+        marginVertical:10,
+        borderRadius:10
     },
     paddImg:{
         paddingHorizontal:20,
-        paddingTop:20,
-        flexDirection:'row'
+        flexDirection:'row',
+        backgroundColor:'#fc4a1a',
+        borderRadius:10,
+        width:'90%',
+        alignSelf:'center'
     },
     titleImg:{
+        marginVertical:10,
         paddingLeft:10,
     },
     txtTitle:{

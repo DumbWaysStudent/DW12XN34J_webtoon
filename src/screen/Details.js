@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, Alert, View, StyleSheet, TextInput, Image, FlatList, ScrollView, Share, TouchableOpacity} from 'react-native';
-import { Form,Left, Right, Picker, Icon, Button, Item, Label, Input, Header, Title, Body, Container } from 'native-base';
+import { Text, View, StyleSheet, TextInput, Image, FlatList, ScrollView, Share, TouchableOpacity} from 'react-native';
+import { Left, Right, Icon, Button, Header, Title, Body, Card, Thumbnail } from 'native-base';
 
 
 
@@ -64,22 +64,22 @@ export default class Detail extends Component  {
             <Image style={styles.imageHeader} source={{uri: 'https://cdn.idntimes.com/content-images/community/2019/05/whoprincess-tt-53769c23d1701756a652a7c2cfc9ac68.png'}}  />
           </TouchableOpacity>
     </View>
-    <ScrollView style={{height:"50%"}}>
+    <ScrollView style={{height:"55%"}}>
         <FlatList         
           scrollEnabled={true}       
           data={this.state.detailImg}
           renderItem={({item, index})=>
-          <View style={styles.listRow}>
-          <View>
-              <TouchableOpacity  onPress={() => this.props.navigation.navigate('DetailEp', {prevScreen:'Details'})}>
-                <Image style={styles.imageList} source={{uri: item.url}}  />
-              </TouchableOpacity>
-          </View>
-          <View style={styles.marginList}>
-              <Text style={styles.titleImg}>{item.title}</Text>
-              <Text style={styles.dataImg}>{item.lastUpdate}</Text>
-          </View>
-        </View>
+          <Card style={styles.listRow}>
+            <View style={styles.listImg}>
+                <TouchableOpacity  onPress={() => this.props.navigation.navigate('DetailEp', {prevScreen:'Details'})}>
+                  <Image style={styles.imageList} source={{uri: item.url}}  />
+                </TouchableOpacity>
+            </View>
+            <View style={styles.marginList}>
+                <Text style={styles.titleImg}>{item.title}</Text>
+                <Text style={styles.dataImg}>{item.lastUpdate}</Text>
+            </View>
+          </Card>
         }
         />
         
@@ -92,17 +92,19 @@ export default class Detail extends Component  {
 
 const styles = StyleSheet.create({
   bar:{
-    backgroundColor:'#4287f5'
+    backgroundColor:'#fc4a1a'
   },
   share:{
-    backgroundColor:'#4287f5'
+    backgroundColor:'#fc4a1a'
   },
   imageHeader : {
     width : '100%',
     height : 200,
   },
   listRow:{
-    flexDirection:'row'
+    flexDirection:'row',
+    backgroundColor:'#fc4a1a',
+    borderRadius:10,
   },
   viewImageHeader : {
       borderWidth : 2,
@@ -110,18 +112,21 @@ const styles = StyleSheet.create({
     },
     imageList : {
       marginLeft : 20,
-      marginBottom : 20,
       width : 100,
       height : 100,
-      borderColor:'black',
-      borderWidth:1,
+      borderColor:'white',
+      borderWidth:2,
+      borderRadius:10,
+      marginVertical:10
     },
     marginList:{
       marginLeft:20,
+      marginVertical:30
     },
     titleImg:{
       fontSize:18,
       fontWeight:'bold',
+      color:'white'
     },
     dataImg:{
       fontSize:14,

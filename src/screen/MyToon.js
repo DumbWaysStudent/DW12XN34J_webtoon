@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native'
-import { Header, Left, Right, Icon, Body, Fab } from 'native-base';
+import { Header, Left, Right, Icon, Body, Fab, Card } from 'native-base';
 
 class MyToon extends Component {
 
@@ -30,7 +30,7 @@ class MyToon extends Component {
             <View style={styles.container}>
                 <Header style={styles.bar}>
                     <Left>
-                        <Icon name='arrow-back' onPress={()=>this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))} />
+                        <Icon name='arrow-back' style={styles.iconBack} onPress={()=>this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))} />
                     </Left>
                     <Body>
                         <Text style={styles.title}>My Webtoon</Text>
@@ -39,12 +39,12 @@ class MyToon extends Component {
                 </Header>
 
                 <View style={styles.cont}>                  
-                    <View>                    
+                    <ScrollView>                    
                         <FlatList 
                         data={this.state.myWebt}
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
-                            <View style={styles.paddImg}>
+                            <Card style={styles.paddImg}>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('EditWebtoon', {prevScreen:'MyToon'})}>
                                     <Image source={{uri : item.image}} style={styles.imgList} />
                                 </TouchableOpacity>
@@ -52,18 +52,18 @@ class MyToon extends Component {
                                     <Text style={styles.txtTitle}>{item.title}</Text>
                                     <Text style={styles.txtEpisode}>{item.episode}</Text>
                                 </View>
-                            </View>
+                            </Card>
                             }
                             keyExtractor={(item, index) => index.toString()
                             }
                             />       
-                    </View>
+                    </ScrollView>
                     <View style={styles.flx}>
                         <Fab
                             active={this.state.active}
                             direction="up"
                             containerStyle={{ }}
-                            style={{ backgroundColor: '#4287f5' }}
+                            style={{ backgroundColor: '#fc4a1a' }}
                             position="bottomRight"
                             onPress={() => this.setState({ active: !this.state.active })}>
                             <Icon name="add" onPress={() => this.props.navigation.navigate('CreateMyToon', {prevScreen: 'MyToon'})} />
@@ -79,36 +79,44 @@ const styles = StyleSheet.create({
         flex:1
     },
     bar:{
-        backgroundColor : '#4287f5'
+        backgroundColor : '#fc4a1a'
     },
-
     title:{
-        fontSize:24
+        fontSize:24,
+        color:'white'
     },
-    iconSearch:{
-        paddingRight:20
+    iconBack:{
+        color:'white'
     },
     imgList:{
         width:100,
         height:100,
-        borderColor:'black',
+        borderColor:'white',
         borderWidth:2,
+        marginVertical:10,
+        borderRadius:10
     },
     paddImg:{
         paddingHorizontal:20,
-        paddingTop:20,
-        flexDirection:'row'
+        flexDirection:'row',
+        backgroundColor:'#fc4a1a',
+        borderRadius:10,
+        width:'90%',
+        alignSelf:'center'
     },
     titleImg:{
         paddingLeft:10,
+        marginVertical:10
     },
     txtTitle:{
         fontSize:20,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        color:'white'
     },
     txtEpisode:{
         fontSize:16,
-        marginTop:10
+        marginTop:10,
+        color:'white'
     },
     flx:{
         flex:1

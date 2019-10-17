@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image} from 'react-native';
 import { Icon, Button } from 'native-base';
-
-import { createAppContainer } from 'react-navigation';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 class Login extends Component {
@@ -73,54 +72,53 @@ class Login extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-
-        <View style={styles.title}>
-          <Text style={styles.titleLogin}>
-              LOG IN
-          </Text>
-          <Text style={styles.titleTxt}>
-              Login with your account WEBTOON
-          </Text>
-        </View>
-        
-        <View style={styles.form}>
-          <Text style={styles.labelEmail}>Email</Text>
-
-          <TextInput style={styles.inputBox}
-            keyboardType="email-address"
-
-            onChangeText={(text) => this.onHandleEmail(text)}
-
-            onKeyPress={() => this.regexLogin('email')}
-
-            value={this.state.email} />
-          
-          <Text style={styles.labelPass}>Password</Text>
       
-          <View style={styles.inputBoxPass}>
-            <TextInput style={styles.inputPass}
-            secureTextEntry={this.state.securePass}
-            onChangeText={(text) => this.onHandledPassword(text)}
-            onKeyPress={() => this.regexLogin('password')}
-
-            value={this.state.password} />
-            <Button onPress={this.showHideIcon} transparent>
-              <Icon type="FontAwesome" name={this.state.securePass ? "eye-slash":"eye"} />
-            </Button>
-            
-          </View>
+        <View style={styles.container}>
+          <LinearGradient colors={['#fc4a1a','#f7b733']} style={styles.gradient} >
           
-          <TouchableOpacity style={styles.buttonSign} onPress={this.onLoginBtn}
+            <View style={styles.title}>
+              <Image source={require('../img/sky.png')} style={styles.logo} />
+            </View>
+          
+            <View style={styles.form}>
+              <Text style={styles.labelEmail}>Email</Text>
 
-          disabled={this.state.submitDisabled} >
+              <TextInput style={styles.inputBox}
+                keyboardType="email-address"
 
-            <Text style={styles.buttonText}>Log In</Text>
+                onChangeText={(text) => this.onHandleEmail(text)}
 
-          </TouchableOpacity>
-        </View>
+                onKeyPress={() => this.regexLogin('email')}
+
+                value={this.state.email} />
+            
+              <Text style={styles.labelPass}>Password</Text>
         
-      </View>
+              <View style={styles.inputBoxPass}>
+                <TextInput style={styles.inputPass}
+                secureTextEntry={this.state.securePass}
+                onChangeText={(text) => this.onHandledPassword(text)}
+                onKeyPress={() => this.regexLogin('password')}
+
+                value={this.state.password} />
+                <Button onPress={this.showHideIcon} transparent>
+                  <Icon type="FontAwesome" name={this.state.securePass ? "eye-slash":"eye"} />
+                </Button>
+                
+              </View>
+            
+              <TouchableOpacity style={styles.buttonSign} onPress={this.onLoginBtn}
+
+              disabled={this.state.submitDisabled} >
+
+              <Text style={styles.buttonText}>Log In</Text>
+
+              </TouchableOpacity>
+            </View>
+  
+          </LinearGradient>
+        </View>
+      
     );
   }
 }
@@ -128,7 +126,14 @@ class Login extends Component {
 const styles = StyleSheet.create({
   container : {
     flex: 1,
-    backgroundColor:'#4287f5',
+  },
+  gradient:{
+    flex:1
+  },
+  logo:{
+    width:150,
+    height:200,
+    marginTop:20
   },
   title:{
     flex:1,
@@ -145,6 +150,7 @@ const styles = StyleSheet.create({
   },
   form:{
     flex:2,
+    marginTop:20,
     alignItems:'center',
   },
   labelEmail:{
@@ -169,6 +175,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     borderColor:'black',
     borderWidth:2,
+    borderRadius:15
     },
   inputBoxPass:{
     width:300,
@@ -176,6 +183,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     borderColor:'black',
     borderWidth:2,
+    borderRadius:15
   }, 
   eye:{
     fontSize:24,
@@ -184,9 +192,10 @@ const styles = StyleSheet.create({
   },
   buttonSign: { 
     width:300,
-    backgroundColor:'#1c313a',
+    backgroundColor:'#fc4a1a',
     marginVertical: 40,
-    paddingVertical: 13
+    paddingVertical: 13,
+    borderRadius:15
     },
   buttonText: {
     fontSize:16,
