@@ -31,38 +31,38 @@ exports.createMyEpisode = (req, res) =>{
         })
     })
 }
-// exports.getEpisode = (req, res)=>{
-//     const webtoonId = req.params.webtoon_id
-//     // const userId = req.params.user_id
-//     // const episodeId = req.params.episode_id
+exports.getEpisode = (req, res)=>{
+    const webtoonId = req.params.webtoon_id
+    // const userId = req.params.user_id
+    // const episodeId = req.params.episode_id
 
-//     Episode.findAll({
-//         where: { id_webtoon: webtoonId},
-//         attributes: { exclude:["id", "id_webtoon"] }
-//     }).then(data => {
-//         res.send(data);
-//     });
-// };
-// exports.updateEpisode = (req, res) => {
-//     const {title, image} = req.body
-//     Episode.update({
-//         title,
-//         image
-//     },
-//     {
-//         where:{id: req.params.episode_id}
-//     }
-//     ).then(result=>{
-//         if(result){
-//             res.send({
-//                 id: req.params.episode_id,
-//                 webtoon_id: req.params.webtoon_id
-//             });
-//         } else{
-//             res.send('Update Failed')
-//         }
-//     });
-// }
+    Episode.findAll({
+        where: { id_webtoon: webtoonId},
+        attributes: { exclude:["id", "id_webtoon"] }
+    }).then(data => {
+        res.send(data);
+    });
+};
+exports.updateEpisode = (req, res) => {
+    const {title, image} = req.body
+    Episode.update({
+        title,
+        image
+    },
+    {
+        where:{id: req.params.episode_id}
+    }
+    ).then(result=>{
+        if(result){
+            res.send({
+                id: req.params.episode_id,
+                webtoon_id: req.params.webtoon_id
+            });
+        } else{
+            res.send('Update Failed')
+        }
+    });
+}
 
 // exports.deleteEpisode = (req, res)=>{
 //     const { episode_id, webtoon_id} = req.params
