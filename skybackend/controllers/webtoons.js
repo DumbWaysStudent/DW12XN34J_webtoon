@@ -90,14 +90,14 @@ exports.updateToon = (req, res) => {
     ).then(res.send(req.body));
 }
 
-// exports.deleteToon = (req, res)=>{
-//     const { user_id, webtoon_id} = req.params
-//     Webtoon.destroy({
-//         where: {id:webtoon_id, created_by: user_id}
-//     }).then(result =>
-//         res.send({
-//             id: webtoon_id,
-//             message:'Webtoon Berhasil dihapus'
-//         })
-//     )
-// }
+exports.deleteToon = (req, res)=>{
+    const { user_id, webtoon_id} = req.params
+    Webtoon.destroy({
+        where: {id:webtoon_id, created_by: user_id}
+    }).then(result =>
+        res.send({
+            id: webtoon_id,
+            message:'Webtoon Berhasil dihapus'
+        })
+    )
+}
