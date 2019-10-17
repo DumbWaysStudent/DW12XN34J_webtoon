@@ -10,7 +10,7 @@ const AuthController = require('./controllers/auth')
 const UserController = require('./controllers/user')
 const WebtoonController = require('./controllers/webtoons')
 const EpisodeController = require('./controllers/episodes')
-// const EpisodePage = require('./controllers/page')
+const EpisodePage = require('./controllers/page')
 // const FavoriteController = require('./controllers/favorite')
 
 // const { authenticated } = require('./middleware')
@@ -33,7 +33,7 @@ app.group('/api/v1', (router)=>{
     // router.get('/user/:user_id/webtoon/:id_webtoon/episodes', authenticated, EpisodeController.index)
 
     // //Menampilkan seluruh halaman webtoon
-    // router.get('/webtoon/:id_webtoon/episode/:id_episode', EpisodePage.getPages)
+    router.get('/webtoon/:id_webtoon/episode/:id_episode', EpisodePage.getPages)
 
     // //Menampilkan seluruh webtoon favorite cara menggunakan  >> http://localhost:9000/api/v1/webtoon/1?is_favorite=true
     // router.get('/webtoon/:id', authenticated, FavoriteController.getFav)
