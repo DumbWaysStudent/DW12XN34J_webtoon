@@ -39,7 +39,7 @@ app.group('/api/v1', (router)=>{
     router.get('/webtoon/:id', authenticated, FavoriteController.getFav)
 
     // //Menampilkan seluruh webtoon User
-    // router.get('/user/:user_id/webtoons', authenticated, WebtoonController.showMyWebtoon)
+    router.get('/user/:user_id/webtoons', authenticated, WebtoonController.showMyWebtoon)
 
     // //Membuat webtoon berdasarkan si ID
     // router.post('/user/:user_id/webtoon', authenticated, WebtoonController.createToon)

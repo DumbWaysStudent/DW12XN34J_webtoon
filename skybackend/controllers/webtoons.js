@@ -45,18 +45,18 @@ exports.showTitle = (req, res)=>{
 //     }
 // }
 
-// exports.showMyWebtoon = (req, res)=>{
-//     Webtoon.findAll({
-//         where:{
-//             created_by: req.params.user_id
-//         },
-//         include:[{
-//             model: User,
-//             as:'createdBy',
-//             attributes:['name']
-//         }]
-//     }).then(result=>res.send(result));
-// }
+exports.showMyWebtoon = (req, res)=>{
+    Webtoon.findAll({
+        where:{
+            created_by: req.params.user_id
+        },
+        include:[{
+            model: User,
+            as:'createdBy',
+            attributes:['name']
+        }]
+    }).then(result=>res.send(result));
+}
 
 
 // exports.createToon = (req, res) =>{
