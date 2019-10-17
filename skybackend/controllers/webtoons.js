@@ -59,22 +59,22 @@ exports.showMyWebtoon = (req, res)=>{
 }
 
 
-// exports.createToon = (req, res) =>{
-//     const { title, genre, is_favorite, image, created_by } = req.body
-//     Webtoon.create({
-//         title,
-//         genre,
-//         is_favorite,
-//         image,
-//         created_by: req.params.user_id
-//     }).then(result => res.send(result))
-//     .catch((result) => {
-//         res.send({
-//             error: true,
-//             message: 'Gagal'
-//         })
-//     })
-// }
+exports.createToon = (req, res) =>{
+    const { title, genre, is_favorite, image, created_by } = req.body
+    Webtoon.create({
+        title,
+        genre,
+        is_favorite,
+        image,
+        created_by: req.params.user_id
+    }).then(result => res.send(result))
+    .catch((result) => {
+        res.send({
+            error: true,
+            message: 'Gagal'
+        })
+    })
+}
 
 // exports.updateToon = (req, res) => {
 //     const {title, genre, is_favorite, image} = req.body;

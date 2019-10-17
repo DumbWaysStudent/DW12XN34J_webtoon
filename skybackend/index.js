@@ -42,7 +42,7 @@ app.group('/api/v1', (router)=>{
     router.get('/user/:user_id/webtoons', authenticated, WebtoonController.showMyWebtoon)
 
     // //Membuat webtoon berdasarkan si ID
-    // router.post('/user/:user_id/webtoon', authenticated, WebtoonController.createToon)
+    router.post('/user/:user_id/webtoon', authenticated, WebtoonController.createToon)
 
     // //Update/Edit dan Delete Webtoon berdasarkan ID
     // router.put('/user/:user_id/webtoon/:webtoon_id', authenticated, WebtoonController.updateToon)
