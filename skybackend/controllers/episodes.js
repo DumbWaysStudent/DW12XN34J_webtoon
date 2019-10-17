@@ -17,20 +17,20 @@ exports.index = (req, res)=>{
 //         }
 //     })
 // }
-// exports.createMyEpisode = (req, res) =>{
-//     const { title, image } = req.body
-//     Episode.create({
-//         title,
-//         image,
-//         id_webtoon:req.params.webtoon_id
-//     }).then(result => res.send(result))
-//     .catch((result) => {
-//         res.send({
-//             error: true,
-//             message: 'Gagal'
-//         })
-//     })
-// }
+exports.createMyEpisode = (req, res) =>{
+    const { title, image } = req.body
+    Episode.create({
+        title,
+        image,
+        id_webtoon:req.params.webtoon_id
+    }).then(result => res.send(result))
+    .catch((result) => {
+        res.send({
+            error: true,
+            message: 'Gagal'
+        })
+    })
+}
 // exports.getEpisode = (req, res)=>{
 //     const webtoonId = req.params.webtoon_id
 //     // const userId = req.params.user_id
