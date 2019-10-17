@@ -26,7 +26,7 @@ app.group('/api/v1', (router)=>{
     router.get('/webtoons', WebtoonController.index)
 
     // //Menampilkan seluruh Webtoon sesuai title
-    // router.get('/webtoons/:title', WebtoonController.showTitle)
+    router.get('/webtoons/:title', WebtoonController.showTitle)
 
     // //Menampilkan seluruh Episode
     router.get('/webtoon/:id_webtoon/episodes', EpisodeController.index)

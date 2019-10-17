@@ -14,11 +14,11 @@ exports.index = (req, res) => {
 // }
 
 
-// exports.showTitle = (req, res)=>{
-//     Webtoon.findAll({
-//         where: {title: req.params.title}
-//     }).then(result=>res.send(result))
-// }
+exports.showTitle = (req, res)=>{
+    Webtoon.findAll({
+        where: {title: req.params.title}
+    }).then(result=>res.send(result))
+}
 
 // exports.searchByTitle = (req, res)=>{
 //     const title = req.query.title
