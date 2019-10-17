@@ -1,12 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const webtoon = sequelize.define('webtoon', {
-    title: {type: DataTypes.STRING,
-            allowNull : false,
-            validate:{
-              notEmpty :true
-            }
-    },
+    title: DataTypes.STRING,
     genre: DataTypes.STRING,
     is_favorite: DataTypes.BOOLEAN,
     image: DataTypes.STRING,

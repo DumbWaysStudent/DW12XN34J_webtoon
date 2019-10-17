@@ -7,18 +7,45 @@ exports.index = (req, res) => {
 }
 
 
-exports.showFavorite = (req, res)=>{
-    Webtoon.findAll({
-        where:{is_favorite: true},
-    }).then(result=>res.send(result))
-}
+// exports.showFavorite = (req, res)=>{
+//     Webtoon.findAll({
+//         where:{is_favorite: true},
+//     }).then(result=>res.send(result))
+// }
 
 
 exports.showTitle = (req, res)=>{
-    Webtoon.findAll({where: {title: req.params.title}}).then(result=>res.send(result))
+    Webtoon.findAll({
+        where: {title: req.params.title}
+    }).then(result=>res.send(result))
 }
 
-exports.showMyToon = (req, res)=>{
+// exports.searchByTitle = (req, res)=>{
+//     const title = req.query.title
+//     if(title){
+//         Webtoon.findAll({
+//             where:{title: title},
+//             include:[{
+//                 model:User,
+//                 as: 'userID',
+//                 attributes: ['name'],
+//             },
+//         ],
+//         }).then(result=>res.send(result))
+//     }else{
+//         Webtoon.findAll({
+//             include:[
+//                 {
+//                     model: User,
+//                     as: 'UserID',
+//                     attributes: ['name'],
+//                 },
+//             ],
+//         }).then(result=>res.send(result))
+//     }
+// }
+
+exports.showMyWebtoon = (req, res)=>{
     Webtoon.findAll({
         where:{
             created_by: req.params.user_id
@@ -39,7 +66,7 @@ exports.createToon = (req, res) =>{
         genre,
         is_favorite,
         image,
-        created_by
+        created_by: req.params.user_id
     }).then(result => res.send(result))
     .catch((result) => {
         res.send({
@@ -47,4 +74,30 @@ exports.createToon = (req, res) =>{
             message: 'Gagal'
         })
     })
+}
+
+exports.updateToon = (req, res) => {
+    const {title, genre, is_favorite, image} = req.body;
+    Webtoon.update({
+        title,
+        genre,
+        is_favorite,
+        image
+    },
+    {
+        where:{id: req.params.webtoon_id,created_by: req.params.user_id},
+    }
+    ).then(res.send(req.body));
+}
+
+exports.deleteToon = (req, res)=>{
+    const { user_id, webtoon_id} = req.params
+    Webtoon.destroy({
+        where: {id:webtoon_id, created_by: user_id}
+    }).then(result =>
+        res.send({
+            id: webtoon_id,
+            message:'Webtoon Berhasil dihapus'
+        })
+    )
 }

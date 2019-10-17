@@ -9,21 +9,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       page: {
-        allowNull:false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull:false
       },
       image: {
         type: Sequelize.STRING
       },
       id_episode: {
-        type: Sequelize.INTEGER
-      },
-      id_webtoon: {
         type: Sequelize.INTEGER,
         allowNull:false,
         references:{
           model:'episodes',
-          key:'id_webtoon'
+          key:'id'
         },
         onUpdate:'cascade',
         onDelete:'cascade'

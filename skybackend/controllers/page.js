@@ -6,9 +6,30 @@ exports.getPages = (req, res)=>{
     const episodeId = req.params.id_episode
 
     Page.findAll({
-        where: { id_episode: episodeId, id_webtoon: webtoonId },
-        attributes: { exclude:["id", "id_episode", "id_webtoon"] }
+        where: { id_episode: episodeId },
+        attributes: { exclude:["id", "id_episode"] }
     }).then(data => {
         res.send(data);
     });
 };
+
+exports.createPage = (req, res)=>{
+    const{page, image} = req.body
+    Page.create({
+        id_episode: req.params.episode_id,
+        page,
+        image
+    }).then(result=> res.send(result))
+}
+
+exports.deletePage = (req, res)=>{
+    const { image_id } = req.params
+    Page.destroy({
+        where: {id:image_id}
+    }).then(result =>
+        res.send({
+            id: image_id,
+            message:'Episode Berhasil dihapus'
+        })
+    )
+}

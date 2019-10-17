@@ -12,21 +12,21 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references:{
-          model: 'webtoons',
-          key: 'id',
+          model:'webtoons',
+          key:'id'
         },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
+        onUpdate:'cascade',
+        onDelete:'cascade'
       },
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references:{
-          model: 'users',
-          key:'id',
+          model:'users',
+          key: 'id',
         },
-        onUpdate:'cascade',
-        onDelete:'cascade'
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       is_favorite: {
         type: Sequelize.INTEGER
