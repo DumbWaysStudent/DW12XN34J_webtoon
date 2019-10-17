@@ -76,19 +76,19 @@ exports.createToon = (req, res) =>{
     })
 }
 
-// exports.updateToon = (req, res) => {
-//     const {title, genre, is_favorite, image} = req.body;
-//     Webtoon.update({
-//         title,
-//         genre,
-//         is_favorite,
-//         image
-//     },
-//     {
-//         where:{id: req.params.webtoon_id,created_by: req.params.user_id},
-//     }
-//     ).then(res.send(req.body));
-// }
+exports.updateToon = (req, res) => {
+    const {title, genre, is_favorite, image} = req.body;
+    Webtoon.update({
+        title,
+        genre,
+        is_favorite,
+        image
+    },
+    {
+        where:{id: req.params.webtoon_id,created_by: req.params.user_id},
+    }
+    ).then(res.send(req.body));
+}
 
 // exports.deleteToon = (req, res)=>{
 //     const { user_id, webtoon_id} = req.params

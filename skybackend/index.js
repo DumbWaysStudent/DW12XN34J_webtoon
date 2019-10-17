@@ -45,7 +45,7 @@ app.group('/api/v1', (router)=>{
     router.post('/user/:user_id/webtoon', authenticated, WebtoonController.createToon)
 
     // //Update/Edit dan Delete Webtoon berdasarkan ID
-    // router.put('/user/:user_id/webtoon/:webtoon_id', authenticated, WebtoonController.updateToon)
+    router.put('/user/:user_id/webtoon/:webtoon_id', authenticated, WebtoonController.updateToon)
     // router.delete('/user/:user_id/webtoon/:webtoon_id', authenticated, WebtoonController.deleteToon)
 
     // //Membuat, menampilkan, mengedit, dan menghapus Episode User
