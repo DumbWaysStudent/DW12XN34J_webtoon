@@ -64,14 +64,14 @@ exports.updateEpisode = (req, res) => {
     });
 }
 
-// exports.deleteEpisode = (req, res)=>{
-//     const { episode_id, webtoon_id} = req.params
-//     Episode.destroy({
-//         where: {id:episode_id, id_webtoon: webtoon_id}
-//     }).then(result =>
-//         res.send({
-//             id: episode_id,
-//             message:'Episode Berhasil dihapus'
-//         })
-//     )
-// }
+exports.deleteEpisode = (req, res)=>{
+    const { episode_id, webtoon_id} = req.params
+    Episode.destroy({
+        where: {id:episode_id, id_webtoon: webtoon_id}
+    }).then(result =>
+        res.send({
+            id: episode_id,
+            message:'Episode Berhasil dihapus'
+        })
+    )
+}

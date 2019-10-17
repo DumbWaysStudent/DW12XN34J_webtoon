@@ -52,7 +52,7 @@ app.group('/api/v1', (router)=>{
     router.post('/user/:user_id/webtoon/:webtoon_id/episode', authenticated, EpisodeController.createMyEpisode)
     router.get('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/images', authenticated, EpisodeController.getEpisode)
     router.put('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id', authenticated, EpisodeController.updateEpisode)
-    // router.delete('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id', authenticated, EpisodeController.deleteEpisode)
+    router.delete('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id', authenticated, EpisodeController.deleteEpisode)
 
     // //Membuat/mengahpus halaman untuk episode tertentu
     // router.post('/user/:user_id/webtoon/:webtoon_id/episode/:episode_id/image', authenticated, EpisodePage.createPage)
