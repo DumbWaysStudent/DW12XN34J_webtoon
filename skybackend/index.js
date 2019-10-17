@@ -9,7 +9,7 @@ const port = 9000
 const AuthController = require('./controllers/auth')
 const UserController = require('./controllers/user')
 const WebtoonController = require('./controllers/webtoons')
-// const EpisodeController = require('./controllers/episodes')
+const EpisodeController = require('./controllers/episodes')
 // const EpisodePage = require('./controllers/page')
 // const FavoriteController = require('./controllers/favorite')
 
@@ -28,8 +28,8 @@ app.group('/api/v1', (router)=>{
     // //Menampilkan seluruh Webtoon sesuai title
     // router.get('/webtoons/:title', WebtoonController.showTitle)
 
-    // //Menampilkan seluruh Episode yang dibuat oleh si ID
-    // router.get('/webtoon/:id_webtoon/episodes', EpisodeController.index)
+    // //Menampilkan seluruh Episode
+    router.get('/webtoon/:id_webtoon/episodes', EpisodeController.index)
     // router.get('/user/:user_id/webtoon/:id_webtoon/episodes', authenticated, EpisodeController.index)
 
     // //Menampilkan seluruh halaman webtoon
