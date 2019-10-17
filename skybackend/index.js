@@ -32,7 +32,7 @@ app.group('/api/v1', (router)=>{
     router.get('/webtoon/:id_webtoon/episodes', EpisodeController.index)
     // router.get('/user/:user_id/webtoon/:id_webtoon/episodes', authenticated, EpisodeController.index)
 
-    // //Menampilkan seluruh halaman webtoon
+    //Menampilkan seluruh halaman webtoon
     router.get('/webtoon/:id_webtoon/episode/:id_episode', EpisodePage.getPages)
 
     // //Menampilkan seluruh webtoon favorite cara menggunakan  >> http://localhost:9000/api/v1/webtoon/1?is_favorite=true
