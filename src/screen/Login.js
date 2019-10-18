@@ -114,6 +114,9 @@ class Login extends Component {
               <Text style={styles.buttonText}>Log In</Text>
 
               </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonReg} onPress={() => this.props.navigation.navigate('Register')} >
+                <Text style={styles.txtReg}>Register</Text>
+              </TouchableOpacity>
             </View>
   
           </LinearGradient>
@@ -193,7 +196,8 @@ const styles = StyleSheet.create({
   buttonSign: { 
     width:300,
     backgroundColor:'#fc4a1a',
-    marginVertical: 40,
+    marginTop: 40,
+    marginBottom:10,
     paddingVertical: 13,
     borderRadius:15
     },
@@ -202,7 +206,17 @@ const styles = StyleSheet.create({
     fontWeight:'500',
     color:'#ffffff',
     textAlign:'center'
-    }
+    },
+  buttonReg:{
+    backgroundColor:'#fd1d1d',
+    width:300,
+    paddingVertical: 13,
+    borderRadius:15
+  },
+  txtReg:{
+    color:'white',
+    textAlign:'center'
+  }
 })
 
 export default Login;

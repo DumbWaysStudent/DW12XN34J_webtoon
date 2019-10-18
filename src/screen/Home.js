@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, FlatList, Image, TouchableOpacity }
 import LinearGradient from 'react-native-linear-gradient';
 import { Input, Item, Icon, Card } from 'native-base';
 import Slideshow from 'react-native-image-slider-show';
+import axios from 'axios';
 
 
 export class Home extends Component {
@@ -57,6 +58,15 @@ export class Home extends Component {
         navigation.navigate('Details', 'dataToon : item')
     }
     
+    // componentDidMount(){
+    //     axios.get('http://192.168.0.5:9000/api/v1/webtoons')
+    //     .then(function (response){
+    //         console.log(response);
+    //     })
+    //     .catch(function (error){
+    //         console.log(error);
+    //     })
+    // }
     
 
     render() {
