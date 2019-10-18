@@ -3,22 +3,20 @@ const models = require('../models')
 const User = models.user
 
 exports.store = (req, res) =>{
-    const token = jwt.sign({ email: req.body.email}, 'my-secret-key')
     const email = req.body.email
+    const password = req.body.password
+    const name = req.body.name
 
     User.findOrCreate({
-        where: {email: req.body.email},
-        defaults:{
-            password: req.body.password,
-            name: req.body.name
-        }
+        where: {
+            email,
+            password,
+            name
+        },
     }).then( ([user, created]) => {
-        console.log(user.get
-            ({ plain: true})
-        )
         if(created) {
+            const token = jwt.sign({ createdId: created.id}, 'my-secret-key')
             res.send({
-                message: 'success',
                 email,
                 token
             })
