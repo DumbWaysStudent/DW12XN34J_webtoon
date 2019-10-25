@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import { Header, Left, Right, Icon, Body, Fab, Card } from 'native-base';
+import { connect } from 'react-redux';
+import * as actionWebtoons from '../redux/actions/actionWebtoon';
 
 class MyToon extends Component {
 
@@ -25,6 +27,12 @@ class MyToon extends Component {
         };
     }
 
+    componentDidMount() {
+        this.props.handleGetUserWebtoon({
+          user_id: 1
+        })
+      }
+
     render() {
         return (
             <View style={styles.container}>
@@ -41,7 +49,8 @@ class MyToon extends Component {
                 <View style={styles.cont}>                  
                     <ScrollView>                    
                         <FlatList 
-                        data={this.state.myWebt}
+                        // data={this.state.myWebt}
+                        data={this.props.mytoonLocal.webtoon}
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
                             <Card style={styles.paddImg}>
@@ -50,7 +59,7 @@ class MyToon extends Component {
                                 </TouchableOpacity>
                                 <View style={styles.titleImg}>
                                     <Text style={styles.txtTitle}>{item.title}</Text>
-                                    <Text style={styles.txtEpisode}>{item.episode}</Text>
+                                    <Text style={styles.txtEpisode}>{item.genre}</Text>
                                 </View>
                             </Card>
                             }
@@ -74,6 +83,18 @@ class MyToon extends Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+      mytoonLocal: state.webtoon
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+        handleGetUserWebtoon: (params) => dispatch(actionWebtoons.handleGetUserWebtoon(params))
+    }
+  }
 const styles = StyleSheet.create({
     container:{
         flex:1
@@ -126,4 +147,8 @@ const styles = StyleSheet.create({
     }
 })
 
-export default MyToon;
+// export default MyToon;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(MyToon);

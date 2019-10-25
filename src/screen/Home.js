@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, ScrollView, FlatList, Image, TouchableOpacity }
 import LinearGradient from 'react-native-linear-gradient';
 import { Input, Item, Icon, Card } from 'native-base';
 import Slideshow from 'react-native-image-slider-show';
+import { connect } from 'react-redux';
+import * as actionWebtoons from './../redux/actions/actionWebtoon';
 
 
 export class Home extends Component {
@@ -40,11 +42,11 @@ export class Home extends Component {
             }, {
                 title: 'Killstagram',
                 image: 'https://scontent.cdninstagram.com/vp/3797512605f04d3b06b9820856814ccc/5DF0840D/t51.2885-15/e35/c12.0.691.691a/s480x480/67701751_461633028018523_2145113131653080542_n.jpg?_nc_ht=scontent-sea1-1.cdninstagram.com'
-            }]
+            }],
         }
     }
 
-    componentDidMount(){
+    componentWillMount(){
         this.setState({
             time: setInterval(() => {
                 this.setState({
@@ -56,13 +58,28 @@ export class Home extends Component {
     onPressFavHor = (item) => {
         navigation.navigate('Details', 'dataToon : item')
     }
+
+    componentWillUnmount(){
+        clearInterval(this.state.time)
+    }
     
-    
+    componentDidMount() {
+        this.props.handleGetWebtoon()
+    }
+
+    onHandleDetail(item){
+        this.props.navigation.navigate('Details', {
+            prevScreen: 'Home',
+            id: item.id,
+            title: item.title,
+            image: item.image,
+        })
+    }
 
     render() {
         return (
                 <View style={styles.container}>
-                    <LinearGradient colors={['#fd1d1d','#fcb045']} style={styles.gradient}>
+                    {/* <LinearGradient colors={['#fd1d1d','#fcb045']} style={styles.gradient}> */}
 
                         <ScrollView>
                             <View style={styles.start}>
@@ -79,7 +96,7 @@ export class Home extends Component {
                                     arrowSize={0}
                                     indicatorSelectedColor="#fc4a1a"
                                     titleStyle={{color : "white"}}
-                                    dataSource={this.state.banners}
+                                    dataSource={this.props.webtoonLocal.webtoon}
                                     position={this.state.position}
                                     onPositionChanged={position => this.setState({ position })}
                                 />
@@ -91,11 +108,12 @@ export class Home extends Component {
                                 
                                     <View style={styles.backList} >
                                         <FlatList
-                                        data={this.state.favCard}
+                                        // data={this.state.favCard}
+                                        data={this.props.webtoonLocal.webtoon}
                                         horizontal={true}
                                         showsHorizontalScrollIndicator={false}
                                         renderItem={({item}) =>
-                                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Details', {prevScreen: 'Home'})}>
+                                        <TouchableOpacity onPress={()=>this.onHandleDetail(item)}>
                                             <View style={styles.list}>
                                                 <Image style={styles.imagelist} source={{uri : item.image}}/>
                                                 <View style={styles.boxImg}>
@@ -121,15 +139,18 @@ export class Home extends Component {
                                 
                                 <View>
                                     <FlatList
-                                    data={this.state.listImg}
+                                    data={this.props.webtoonLocal.webtoon}
                                     showsVerticalScrollIndicator={false}
                                     renderItem={({item}) =>
                                     
                                         <Card style={styles.wrapAll}>
-                                            <Image style={styles.imagelistAll} source={{uri : item.image}}/>
+                                            <TouchableOpacity onPress={()=>this.onHandleDetail(item)}>
+                                                <Image style={styles.imagelistAll} source={{uri : item.image}}/>
+                                            </TouchableOpacity>
+                                            
                                             <View style={styles.viewTxtAll}>
                                                 <Text style={styles.txtAllList}>{item.title}</Text>
-                                                <TouchableOpacity style={styles.btnFav}>
+                                                <TouchableOpacity style={styles.btnFav} >
                                                     <Text style={styles.txtBtnFav}>+ Favorite</Text>
                                                 </TouchableOpacity>
                                             </View>
@@ -142,12 +163,29 @@ export class Home extends Component {
                             </View>
                         
                         </ScrollView>
-                    </LinearGradient>
+                    {/* </LinearGradient> */}
                         
                 </View>      
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+      webtoonLocal: state.webtoon
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      handleGetWebtoon: () => dispatch(actionWebtoons.handleGetWebtoon()),
+    //   handleAddTodos: (params) => dispatch(actionTodos.handleAddTodos(params)),
+    //   handleUpdateTodos: (params) => dispatch(actionTodos.handleUpdateTodos(params)),
+    //   handleDeleteTodos: (params) => dispatch(actionTodos.handleDeleteTodos(params)),
+  
+    //   getUser: () => dispatch(actionUsers.handleGetUsers())
+    }
+  }
 
 const styles = StyleSheet.create({
     container:{
@@ -184,7 +222,7 @@ const styles = StyleSheet.create({
     txtFav:{
         fontSize:18,
         fontWeight:'bold',
-        color:'white'
+        color:'black'
     },
     txtFavList:{
         color:'white',
@@ -214,7 +252,7 @@ const styles = StyleSheet.create({
     txtAll:{
         fontSize:18,
         fontWeight:'bold',
-        color:'white'
+        color:'black'
     },
     txtAllList:{
         fontSize:16,
@@ -259,4 +297,8 @@ const styles = StyleSheet.create({
         backgroundColor:'tomato'
     }
 })
-export default Home;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Home);
+// export default Home;

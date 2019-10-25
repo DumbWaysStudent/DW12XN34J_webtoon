@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native';
 import { Input, Item, Icon, Card } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
+import { connect } from 'react-redux';
+import * as actionWebtoons from '../redux/actions/actionWebtoon';
 
 class Favorit extends Component {
 
@@ -22,8 +24,12 @@ class Favorit extends Component {
                 image: 'https://cdn.idntimes.com/content-images/community/2019/05/screenshot-20190509-145620-43ff1dab6072ada62ba43e14321a87ef.png',
                 rating: '80 Favourite'
                 }],
-            
         };
+    }
+    componentDidMount() {
+        this.props.handleFavorite({
+            id: 1
+        })
     }
 
     render() {
@@ -41,12 +47,13 @@ class Favorit extends Component {
                     <ScrollView showsVerticalScrollIndicator={false}>
                         <View>                   
                             <FlatList 
-                            data={this.state.favCard}
+                            // data={this.state.favCard}
+                            data={this.props.favoriteLocal.webtoon}
                             showsVerticalScrollIndicator={false}
                             renderItem={({item}) =>
                             
                             <Card style={styles.paddImg}>
-                                <TouchableOpacity  onPress={() => this.props.navigation.navigate('Details', {prevScreen: 'Favorit'})}>
+                                <TouchableOpacity  onPress={() => this.props.navigation.navigate('Details', {prevScreen: 'Favorit', image_banner: item.image, id_webtoon: item.title})}>
                                     <Image source={{uri : item.image}} style={styles.imgList} />
                                 </TouchableOpacity>
                                 <View style={styles.titleImg}>
@@ -68,6 +75,17 @@ class Favorit extends Component {
         );
     }
 }
+const mapStateToProps = state => {
+    return {
+      favoriteLocal: state.webtoon
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+        handleFavorite: (params) => dispatch(actionWebtoons.handleFavorite(params))
+    }
+  }
 const styles = StyleSheet.create({
     container:{
         flex:1,
@@ -114,4 +132,8 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Favorit;
+// export default Favorit;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Favorit);

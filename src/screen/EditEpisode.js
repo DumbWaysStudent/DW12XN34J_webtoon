@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity, TextInput } from 'react-native';
 import { Header, Left, Icon, Body, Right, Card } from 'native-base';
-
+import { connect } from 'react-redux';
+import * as actionPage from '../redux/actions/actionPage';
 
 
 class CreateMyToon extends Component {
@@ -30,6 +31,12 @@ class CreateMyToon extends Component {
           ]
     }
 }
+componentDidMount() {
+    this.props.handleGetPage({
+      id_webtoon: 2,
+      id_episode: 1
+    })
+  }
 
     render() {
         return (
@@ -54,15 +61,16 @@ class CreateMyToon extends Component {
                 <View style={styles.flexEps}>   
                     <Text style={styles.eps}>Add Images</Text>                     
                         <FlatList 
-                        data={this.state.editEps}
+                        // data={this.state.editEps}
+                        data={this.props.pageLocal.page}
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
                         <Card style={styles.containerEps} >
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('EditEpisode')} >
-                                <Image source={{uri : item.url}} style={styles.imgList} />
+                                <Image source={{uri : item.image}} style={styles.imgList} />
                             </TouchableOpacity>
                             <View style={styles.txtImg}>
-                                <Text style={styles.titleEps}>{item.title}</Text>
+                                <Text style={styles.titleEps}>{item.page}</Text>
                                 <Text style={styles.update}>{item.lastUpdate}</Text>
                             </View>
                         </Card>
@@ -82,6 +90,18 @@ class CreateMyToon extends Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+      pageLocal: state.page
+    }
+  }
+  
+const mapDispatchToProps = dispatch => {
+    return {
+        handleGetPage: (params) => dispatch(actionPage.handleGetPage(params)),
+    }
+  }
 
 const styles = StyleSheet.create({
     container:{
@@ -204,4 +224,8 @@ const styles = StyleSheet.create({
         flex:4
     }
 })
-export default CreateMyToon;
+// export default CreateMyToon;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(CreateMyToon);

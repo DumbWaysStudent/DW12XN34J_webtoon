@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity, TextInput } from 'react-native';
 import { Header, Left, Icon, Body, Right, Card } from 'native-base';
-
+import { connect } from 'react-redux';
+import * as actionEpisode from '../redux/actions/actionEpisode'
 
 
 class CreateMyToon extends Component {
@@ -30,6 +31,11 @@ class CreateMyToon extends Component {
           ]
     }
 }
+componentDidMount() {
+    this.props.handleGetEpisode({
+      id_webtoon: 2
+    })
+  }
 
     render() {
         return (
@@ -56,12 +62,13 @@ class CreateMyToon extends Component {
                     <Text style={styles.eps}>Episode</Text>
                     
                         <FlatList 
-                        data={this.state.imgEps}
+                        // data={this.state.imgEps}
+                        data={this.props.episodeLocal.episode} 
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
                         <Card style={styles.containerEps} >
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('EditEpisode', {prevScreen: 'CreateMyToon'})} >
-                                <Image source={{uri : item.url}} style={styles.imgList} />
+                                <Image source={{uri : item.image}} style={styles.imgList} />
                             </TouchableOpacity>
                             <View style={styles.txtImg}>
                                 <Text style={styles.titleEps}>{item.title}</Text>
@@ -81,6 +88,18 @@ class CreateMyToon extends Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+      episodeLocal: state.episode
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      handleGetEpisode: (params) => dispatch(actionEpisode.handleGetEpisode(params))
+    }
+  }
 
 const styles = StyleSheet.create({
     container:{
@@ -187,4 +206,8 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
     },
 })
-export default CreateMyToon;
+// export default CreateMyToon;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(CreateMyToon);

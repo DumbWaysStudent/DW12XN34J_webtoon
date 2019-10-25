@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity, TextInput } from 'react-native';
 import { Header, Left, Icon, Body, Right, Card, Button } from 'native-base';
-
+import { connect } from 'react-redux';
+import * as actionEpisode from '../redux/actions/actionEpisode';
 
 
 class CreateMyToon extends Component {
@@ -37,7 +38,13 @@ class CreateMyToon extends Component {
           ]
     }
 }
-
+componentDidMount() {
+    this.props.handleGetImage({
+      user_id: 2,
+      webtoon_id: 2,
+      episode_id: 1
+    })
+  }
     render() {
         return (
             <View style={styles.container}>
@@ -63,11 +70,12 @@ class CreateMyToon extends Component {
                     <Text style={styles.eps}>Add Images</Text>
                     
                         <FlatList 
-                        data={this.state.addImg}
+                        // data={this.state.addImg}
+                        data={this.props.imageLocal.episode} 
                         showsVerticalScrollIndicator={false}
                         renderItem={({item}) =>
                         <Card style={styles.containerEps} >
-                            <Image source={{uri : item.url}} style={styles.imgList} />
+                            <Image source={{uri : item.image}} style={styles.imgList} />
                             <View style={styles.txtImg}>
                                 <Text style={styles.titleEps}>{item.title}</Text>
                                 <View>
@@ -96,6 +104,18 @@ class CreateMyToon extends Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+      imageLocal: state.episode
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+        handleGetImage: (params) => dispatch(actionEpisode.handleGetImage(params))
+    }
+  }
 
 const styles = StyleSheet.create({
     input:{
@@ -217,4 +237,8 @@ const styles = StyleSheet.create({
         color:'white'
     }
 })
-export default CreateMyToon;
+// export default CreateMyToon;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(CreateMyToon);

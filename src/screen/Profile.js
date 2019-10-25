@@ -16,7 +16,7 @@ class Profile extends Component {
 
         if(!this.state.name){
             this.setState({
-                name: 'Sandy Rahmansyah',
+                name: 'Anonim',
                 avatar: require('../img/img_299586.png'),
             })
         }

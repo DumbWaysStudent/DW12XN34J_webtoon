@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TextInput, Image, FlatList, ScrollView, Share, TouchableOpacity} from 'react-native';
 import { Left, Right, Icon, Button, Header, Title, Body, Card, Thumbnail } from 'native-base';
+import { connect } from 'react-redux';
+import * as actionEpisode from '../redux/actions/actionEpisode';
 
 
-
-export default class Detail extends Component  {
+export class Detail extends Component  {
 
     constructor(props) {
       super(props);
@@ -28,7 +29,8 @@ export default class Detail extends Component  {
             url: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90',
             lastUpdate: '3 Oktober 2019'
           },
-        ]
+        ],
+        data:[]
       };
     }
 
@@ -37,6 +39,23 @@ export default class Detail extends Component  {
     message: 'Want Share?',
     subject : 'Subject',
   })
+
+  componentDidMount() {
+    setTimeout(async () => {
+      const idWebtoon = this.props.navigation.getParam('id')
+      await this.props.handleGetEpisode(idWebtoon)
+    }, 1000)
+  }
+
+  onHandleDetailEp(item) {
+    this.props.navigation.navigate('DetailEp', {
+      prevScreen: 'Detail',
+      title: item.title,
+      id: item.id,
+      webtoonId: item.webtoonId.id,
+      webtoonName: item.webtoonId.name
+  })
+  }
 
   render () {
   return(
@@ -49,7 +68,7 @@ export default class Detail extends Component  {
           </Button>
         </Left>      
         <Body>
-          <Title><Text>Suddenly I Became a Princess</Text></Title>
+          <Title><Text>{this.props.navigation.getParam('title')}</Text></Title>
         </Body>
         <Right >
           <Button onPress={this.onClickShare} style={styles.share}>
@@ -61,18 +80,19 @@ export default class Detail extends Component  {
     <View style={styles.viewImageHeader}>
 
           <TouchableOpacity>
-            <Image style={styles.imageHeader} source={{uri: 'https://cdn.idntimes.com/content-images/community/2019/05/whoprincess-tt-53769c23d1701756a652a7c2cfc9ac68.png'}}  />
+            <Image style={styles.imageHeader} source={{uri: this.props.navigation.getParam('image')}}  />
           </TouchableOpacity>
     </View>
     <ScrollView style={{height:"55%"}}>
         <FlatList         
-          scrollEnabled={true}       
-          data={this.state.detailImg}
+          scrollEnabled={true}
+          data={this.props.episodeLocal.episode}     
+          // data={this.state.detailImg}
           renderItem={({item, index})=>
           <Card style={styles.listRow}>
             <View style={styles.listImg}>
-                <TouchableOpacity  onPress={() => this.props.navigation.navigate('DetailEp', {prevScreen:'Details'})}>
-                  <Image style={styles.imageList} source={{uri: item.url}}  />
+                <TouchableOpacity  onPress={() => this.onHandleDetailEp(item)}>
+                  <Image style={styles.imageList} source={{uri: item.image}}  />
                 </TouchableOpacity>
             </View>
             <View style={styles.marginList}>
@@ -88,6 +108,18 @@ export default class Detail extends Component  {
 
   )}
 
+}
+
+const mapStateToProps = state => {
+  return {
+    episodeLocal: state.episode
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleGetEpisode: (idWebtoon) => dispatch(actionEpisode.handleGetEpisode(idWebtoon))
+  }
 }
 
 const styles = StyleSheet.create({
@@ -134,3 +166,8 @@ const styles = StyleSheet.create({
     }
     
 });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Detail);

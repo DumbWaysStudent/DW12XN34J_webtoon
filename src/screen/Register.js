@@ -3,14 +3,15 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, AsyncStorag
 import { Icon, Button } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import { connect } from 'react-redux';
-import * as actionLogin from '../redux/actions/actionLogin';
+import * as actionRegister from '../redux/actions/actionRegister';
 
 
-class Login extends Component {
+class Register extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      name:'',
       email: '',
       password: '',
       submitDisabled : true,
@@ -26,9 +27,12 @@ class Login extends Component {
   onHandledPassword = (text) => {
     this.setState({password: text})
   }
+  onHandleName = (text) => {
+      this.setState({name: text})
+  }
 
   onLoginBtn = () =>{
-    this.props.navigation.navigate("Home");
+    this.props.navigation.navigate("Login");
   }
 
   showHideIcon = () => {
@@ -60,38 +64,39 @@ class Login extends Component {
     }
   }
 
-  login= async() =>{
-    const email = String(this.state.email).toLowerCase()
+  register= async() =>{
+    const name = String(this.state.name)
+    const email = String(this.state.email).toLowerCase()      
     const password = String(this.state.password)
-    await this.props.handleLogin(email,password)
-    const users = this.props.loginLocal.login
-      if(users.token){
-        await AsyncStorage.multiSet([
-          ['token', users.token],
-          ['id', `${users.id}`]
-        ])
-        console.log(users.token)
-        console.log(users.id)
-        this.props.navigation.navigate('Home')
+    await this.props.handleRegister(name, email, password)
+      if(this.props.registerLocal.register.token){
+        const data = this.props.registerLocal.register.token
+        await AsyncStorage.setItem('token', data)
+        console.log(data)
+        this.props.navigation.navigate('Login')
       }else{
-        alert('Invalid Email or Password')
-      }      
+        alert('Email sudah digunakan')
+      }
+      
     }
- 
+  
 
   render() {
-    console.disableYellowBox = true
     return (
       
         <View style={styles.container}>
-          {/* <LinearGradient colors={['#fc4a1a','#f7b733']} style={styles.gradient} > */}
+          <LinearGradient colors={['#fc4a1a','#f7b733']} style={styles.gradient} >
           
             <View style={styles.title}>
-              {/* <Image source={require('../img/sky.png')} style={styles.logo} /> */}
-              <Text style={{fontSize:30}}>LOGIN</Text>
+              <Image source={require('../img/sky.png')} style={styles.logo} />
             </View>
           
             <View style={styles.form}>
+              <Text style={styles.labelEmail}>Name</Text>
+              <TextInput style={styles.inputBox}
+                onChangeText={(text) => this.onHandleName(text)}
+                value={this.state.name} />
+
               <Text style={styles.labelEmail}>Email</Text>
 
               <TextInput style={styles.inputBox}
@@ -118,20 +123,16 @@ class Login extends Component {
                 
               </View>
             
-              <TouchableOpacity style={styles.buttonSign} onPress= {() => this.login()}
+              <TouchableOpacity style={styles.buttonSign} onPress= {() => this.register()}
 
               disabled={this.state.submitDisabled} >
 
-              <Text style={styles.buttonText}>Log In</Text>
+              <Text style={styles.buttonText}>Register</Text>
 
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.buttonReg} onPress={() => this.props.navigation.navigate('Register')} >
-                <Text style={styles.buttonText}>Register</Text>
               </TouchableOpacity>
             </View>
   
-          {/* </LinearGradient> */}
+          </LinearGradient>
         </View>
       
     );
@@ -140,12 +141,12 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    loginLocal: state.login
+    registerLocal: state.register
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    handleLogin: (email,password) => dispatch(actionLogin.handleLogin(email,password))
+    handleRegister: (name, email, password) => dispatch(actionRegister.handleRegister(name, email, password))
   }
 }
 
@@ -218,19 +219,11 @@ const styles = StyleSheet.create({
   },
   buttonSign: { 
     width:300,
-    backgroundColor:'#fc4a1a',
-    marginTop: 40,
+    backgroundColor:'#fd1d1d',
+    marginVertical: 40,
     paddingVertical: 13,
     borderRadius:15
     },
-  buttonReg:{
-    width:300,
-    backgroundColor:'#fd1d1d',
-    marginBottom: 10,
-    marginTop:20,
-    paddingVertical: 13,
-    borderRadius:15
-  },
   buttonText: {
     fontSize:16,
     fontWeight:'500',
@@ -239,8 +232,8 @@ const styles = StyleSheet.create({
     }
 })
 
-// export default Login;
+// export default Register;
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login);
+)(Register);

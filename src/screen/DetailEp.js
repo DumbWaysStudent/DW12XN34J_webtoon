@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Text, Alert, View, StyleSheet, TextInput, Image, FlatList, SafeAreaView, Share, ScrollView, TouchableOpacity} from 'react-native';
-import { Form,Left, Right, Picker, Icon, Button, Item, Label, Input, Header, Title, Body, Container } from 'native-base';
+import { Text, View, StyleSheet, Image, FlatList, SafeAreaView, Share, ScrollView, TouchableOpacity} from 'react-native';
+import { Left, Right, Icon, Header, Body} from 'native-base';
+import { connect } from 'react-redux';
+import * as actionPage from '../redux/actions/actionPage';
 
 
 class DetailEp extends Component {
@@ -37,16 +39,26 @@ class DetailEp extends Component {
         subject : 'Subject'
     })
 
+    componentDidMount() {
+      setTimeout(async () => {
+        const idWebtoon = this.props.navigation.getParam('webtoonId')
+        const idEpisode = this.props.navigation.getParam('id')
+        await this.props.handleGetPage(idWebtoon, idEpisode)
+      }, 1000)
+    }
+
+
     render() {
+      const {page} = this.props.pageLocal
         return (
             <View>
                 <Header style={styles.bar}>
                     <Left>
-                        <TouchableOpacity style={styles.back} onPress={()=>this.props.navigation.navigate(this.props.navigation.getParam('prevScreen'))}>
+                        <TouchableOpacity style={styles.back} onPress={()=>this.props.navigation.navigate('Details')}>
                         <Icon name='arrow-back' style={styles.back} />
                         </TouchableOpacity>
                     </Left>
-                    <Body><Text style={styles.barTitle}>Episode 1</Text></Body>
+                    <Body><Text style={styles.barTitle}>{this.props.navigation.getParam('title')}</Text></Body>
                     <Right>
                         <Icon name='share' style={styles.share} onPress={this.onClickShare} />
                     </Right>
@@ -55,9 +67,10 @@ class DetailEp extends Component {
                     <ScrollView>
                         <View>
                             <FlatList 
-                            data={this.state.episode}
+                            // data={this.state.episode}
+                            data={page}  
                             showsVerticalScrollIndicator={false}
-                            renderItem={({item, index})=>
+                            renderItem={({item})=>
                             <View>
                                 <Image source={{uri : item.image}} style={styles.imgEps} />
                             </View>
@@ -70,6 +83,18 @@ class DetailEp extends Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+      pageLocal: state.page
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+        handleGetPage: (idWebtoon, idEpisode) => dispatch(actionPage.handleGetPage(idWebtoon, idEpisode))
+    }
+  }
 
 const styles = StyleSheet.create({
     bar:{
@@ -87,8 +112,12 @@ const styles = StyleSheet.create({
     },
     imgEps:{
         width: '100%',
-        height: 900,
+        height: 700,
         borderColor:'black',
     }
 })
-export default DetailEp;
+// export default DetailEp;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(DetailEp);
